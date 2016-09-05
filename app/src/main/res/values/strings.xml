@@ -1,0 +1,10 @@
+<resources>
+    <string name="app_name">BaseMaterialDemo</string>
+    <string name="drawer_open">Open</string>
+    <string name="drawer_close">Close</string>
+
+    <string name="tv_notice">提示</string>
+
+    <string name="btn_confirm">确认</string>
+    <string name="btn_cancel">取消</string>
+</resources>
