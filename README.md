@@ -47,6 +47,8 @@
 
   [BaseTabTopActivity](#7.3)
 
+  [BaseTabBottomActivity](#7.4)
+
 ### <span id="1.1">xlistview</span>
 #### 简介
 支持双向加载的ListView。这个是别人写的，只是为了保持控件的包名一致，方便以后复制粘贴XML，要知道由于XML中定义的控件不存在就会导致闪退的。
@@ -462,6 +464,32 @@ public class TabTopActivity extends BaseTabTopActivity {
         addFragment(new HomeFragment(),"HomeFragment");
         addFragment(new RecyclerViewFragment(),"RecyclerViewFragment");
         addFragment(new ListViewFragment(),"ListViewFragment");
+    }
+}
+```
+
+### <span id="7.4>activity\BaseTabBottomActivity</span>
+#### 简介
+显示ToolBar并需要多个顶部Tab来切换多个Fragment的Activity继承它就好了
+#### 使用说明
+方法
+
+类型 | 名称 | 参数 | 说明
+----|------|----|----|
+void | addFragment(Fragment fragment, String title,int imgId) | <br>fragment=>需要加载的Fragment<br/> <br>title=>Tab上显示的标题<br/> <br>title=>Tab上显示的图标<br/> | 加载一个Fragment
+void | initialise() |  | 加载完所有的Fragment需要初始化，否则不显示
+
+示例
+```
+public class TabBottomActivity extends BaseTabBottomActivity {
+
+    @Override
+    protected void onCreate(@Nullable Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        addFragment(new HomeFragment(),"HomeFragment",R.mipmap.ic_launcher);
+        addFragment(new RecyclerViewFragment(),"RecyclerViewFragment",R.mipmap.ic_launcher);
+        addFragment(new ListViewFragment(),"ListViewFragment",R.mipmap.ic_launcher);
+        initialise();
     }
 }
 ```
