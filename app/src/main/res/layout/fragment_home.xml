@@ -51,4 +51,13 @@
         android:textColor="@color/textWhite"
         android:text="ListViewActivity"
         android:layout_marginTop="20dp"/>
+
+    <Button
+        android:id="@+id/btnTabBottomActivity"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/shape_btn"
+        android:textColor="@color/textWhite"
+        android:text="TabBottomActivity"
+        android:layout_marginTop="20dp"/>
 </LinearLayout>

@@ -5,7 +5,7 @@ import android.view.View;
 import android.widget.Button;
 
 import com.chenyuwei.basematerial.R;
-import com.chenyuwei.basematerial.activity.BackToolBarActivity;
+import com.chenyuwei.basematerial.activity.TabBottomActivity;
 import com.chenyuwei.basematerial.activity.CollapsingToolbarLayoutActivity;
 import com.chenyuwei.basematerial.activity.DrawLayoutActivity;
 import com.chenyuwei.basematerial.activity.DrawLayoutTabLayoutActivity;
@@ -24,6 +24,7 @@ public class HomeFragment extends BaseFragment {
     private Button btnDrawLayoutTabLayoutActivity;
     private Button btnCollapsingToolbarLayoutActivity;
     private Button btnListViewActivity;
+    private Button btnTabBottomActivity;
 
     @Override
     protected int onBindView() {
@@ -39,6 +40,7 @@ public class HomeFragment extends BaseFragment {
         btnDrawLayoutTabLayoutActivity = (Button)findViewById(R.id.btnDrawLayoutTabLayoutActivity);
         btnCollapsingToolbarLayoutActivity = (Button)findViewById(R.id.btnCollapsingToolbarLayoutActivity);
         btnListViewActivity = (Button)findViewById(R.id.btnListViewActivity);
+        btnTabBottomActivity = (Button)findViewById(R.id.btnTabBottomActivity);
     }
 
     @Override
@@ -51,9 +53,6 @@ public class HomeFragment extends BaseFragment {
             case R.id.btnDrawLayoutActivity:
                 startActivity(DrawLayoutActivity.class);
                 break;
-            case R.id.btnBackToolBarActivity:
-                startActivity(BackToolBarActivity.class);
-                break;
             case R.id.btnDrawLayoutTabLayoutActivity:
                 startActivity(DrawLayoutTabLayoutActivity.class);
                 break;
@@ -62,6 +61,9 @@ public class HomeFragment extends BaseFragment {
                 break;
             case R.id.btnListViewActivity:
                 startActivity(ListViewActivity.class);
+                break;
+            case R.id.btnTabBottomActivity:
+                startActivity(TabBottomActivity.class);
                 break;
         }
     }
