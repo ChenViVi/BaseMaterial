@@ -3,27 +3,70 @@
 简介:封装一些常用的视图模板和基本框架，便于快速开发,老司机上路必备加油包。我们的目标是：更笨，更快，更懒！
 
 ## 使用方法（以本Demo为例）
+1. 依赖工程
 
-### 1.依赖工程：xlistview
+  [xlistview](#1.1)
+
+  [load-image-view](#1.2)
+
+2. \network
+
+  [RequestMaker](#2.1)
+
+  [PostUploadRequest](#2.2)
+
+3. \util
+
+  [Tool](#3.1)
+
+4. \view
+
+  [ConfirmDialog](#4.1)
+
+  [DownlandDialog](#4.2)
+
+5. \adapter
+
+  [BaseListViewAdapter](#5.1)
+
+  [BaseRecyclerViewAdapter](#5.2)
+
+6. \fragment
+
+  [BaseFragment](#6.1)
+
+  [BaseListViewFragment](#6.2)
+
+  [BaseDrawerFragment](#6.3)
+
+7. \activity
+
+  [BaseActivity](#7.1)
+
+  [BaseListViewActivity](#7.2)
+
+  [BaseTabTopActivity](#7.3)
+
+### <span id="1.1">xlistview</span>
 #### 简介
 支持双向加载的ListView。这个是别人写的，只是为了保持控件的包名一致，方便以后复制粘贴XML，要知道由于XML中定义的控件不存在就会导致闪退的。
 #### 使用说明
 [直接看原作吧](https://github.com/Maxwin-z/XListView-Android)
 
-### 2.依赖工程：load-image-view
+### <span id="1.2"> load-image-view</span>
 #### 简介
 这个是我以前写的由Glide封装的的图片加载框架。
 
 #### 使用说明
 [直接看原作吧](https://github.com/ChenViVi/LoadImageView)
 
-### 3.network\RequestMaker
+### <span id="2.1">network\RequestMaker</span>
 #### 简介
 这个是我以前写的由Volley封装的网络请求加载框架。
 #### 使用说明
 [直接看原作吧](https://github.com/ChenViVi/RequestMaker)
 
-### 4.network\PostUploadRequest
+### <span id="2.2">network\PostUploadRequest</span>
 #### 简介
 用于上传文件的框架,封装于Volley,是网上找的
 #### 使用说明
@@ -51,7 +94,7 @@ queue.add(new PostUploadRequest("http//:111.11.11.11/uploadimg", map, new Respon
 });
 ```
 
-### 5.util\Tool
+### <span id="3.1">util\Tool</span>
 #### 简介
 收集一些日常常用的静态方法，会持续更新。
 #### 使用说明
@@ -65,7 +108,7 @@ int | px2sp(Context context,float value) | 自己体会| px转sp
 int | sp2px(Context context,float value) | 自己体会| sp转px
 String | getMD5(String info) | 自己体会| 返回md5加密后的信息
 
-### 6.view\ConfirmDialog
+### <span id="4.1">view\ConfirmDialog</span>
 #### 简介
 自定义的确定取消的提示消息Dialog，主要为了Android 4.4版本以上和Android 4.4版本以下风格统一
 #### 使用说明
@@ -82,7 +125,7 @@ ConfirmDialog(Context context, String message) |<br>content=>弹出提示框的C
 abstract void | onConfirm() |  | 点击确定的时候被调用
 abstract void | onCancel() |  | 点击取消的时候被调用
 
-### 7.view\DownlandDialog
+### <span id="4.2">view\DownlandDialog</span>
 #### 简介
 自定义的下载文件的ProgressDialog
 #### 使用说明
@@ -101,7 +144,7 @@ void | onExists(String file) | 自己体会 | 需要下载的文件已存在时�
 void | onCancel(String file) | 自己体会 | 当用户点击返回键时被调用（默认显示提示Toast）
 void | onFail(String file) | 自己体会 | 当下载失败时被调用（默认显示提示Toast）
 
-### 8.adapter\BaseListViewAdapter
+### <span id="5.1">adapter\BaseListViewAdapter</span>
 #### 简介
 封装后的BaseAdapter，使得ListView的Adapter代码变得简洁，且代码格式与RecyclerView的Adapter一致。。
 #### 使用说明
@@ -145,7 +188,7 @@ public class ArticleAdapter extends BaseListViewAdapter<Article,ArticleAdapter.V
 }
 ```
 
-### 9.adapter\BaseRecyclerViewAdapter
+### <span id="5.2">adapter\BaseRecyclerViewAdapter</span>
 #### 简介
 封装后的RecyclerView.Adapter，使得RecyclerView的Adapter代码变得简洁,且代码格式与ListView的Adapter一致。
 #### 使用说明
@@ -176,7 +219,7 @@ public class ArticleAdapter extends BaseRecyclerViewAdapter<Article,ArticleAdapt
 }
 ```
 
-### 10.fragment\BaseFragment
+### <span id="6.1">fragment\BaseFragment</span>
 #### 简介
 封装后的Fragment
 #### 使用说明
@@ -225,7 +268,7 @@ public class HomeFragment extends BaseFragment {
 }
 ```
 
-### 11.fragment\BaseListViewFragment
+### <span id="6.2">fragment\BaseListViewFragment</span>
 #### 简介
 只显示ListView的Fragment继承它就好了，支持双向加载 更多
 #### 使用说明
@@ -247,7 +290,7 @@ void | stopRefresh() |  | 停止下拉刷新
 void | stopLoadMore() |  | 停止上拉加载更多
 void | setOnItemClickListener(BaseListViewAdapter.OnItemClickListener<Item> listener) | 自己体会 | 为ListView项目添加点击事件
 
-### 12.fragment\BaseDrawerFragment
+### <span id="6.3">fragment\BaseDrawerFragment</span>
 #### 简介
 作为侧栏导航的Fragment继承它就好了
 #### 使用说明
@@ -289,7 +332,7 @@ public class DrawLayoutActivity extends BaseActivity {
     }
 }
 ```
-### 13.activity\BaseActivity
+### <span id="7.1">activity\BaseActivity</span>
 #### 简介
 封装后的AppCompatActivity
 #### 使用说明
@@ -337,7 +380,7 @@ public class CollapsingToolbarLayoutActivity extends BaseActivity {
 }
 ```
 
-### 14.activity\BaseListViewActivity
+### <span id="7.2">activity\BaseListViewActivity</span>
 #### 简介
 只显示ToolBar和ListView的Activity继承它就好了，支持双向加载 更多
 #### 使用说明
@@ -398,7 +441,7 @@ public class ListViewActivity extends BaseListViewActivity<Article,ArticleAdapte
 }
 ```
 
-### 15.activity\BaseTabTopActivity
+### <span id="7.3>activity\BaseTabTopActivity</span>
 #### 简介
 显示ToolBar并需要多个顶部Tab来切换多个Fragment的Activity继承它就好了
 #### 使用说明
