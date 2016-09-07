@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.chenyuwei.basematerial">
-
+    package="com.chenyuwei.basematerial.demo">
     <application
         android:name=".MyApplication"
         android:allowBackup="true"
@@ -10,19 +9,16 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity android:name=".activity.TabTopActivity">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
+        <intent-filter>
+            <action android:name="android.intent.action.MAIN" />
 
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
-        </activity>
-        <activity android:name=".activity.CollapsingToolbarLayoutActivity" />
-        <activity android:name=".activity.TabBottomActivity" />
-        <activity android:name=".activity.DrawLayoutActivity" />
-        <activity android:name=".activity.DrawLayoutTabLayoutActivity"/>
-        <activity android:name=".activity.ListViewActivity">
-
-        </activity>
+            <category android:name="android.intent.category.LAUNCHER" />
+        </intent-filter>
+    </activity>
+    <activity android:name=".activity.CollapsingToolbarLayoutActivity" />
+    <activity android:name=".activity.TabBottomActivity" />
+    <activity android:name=".activity.DrawLayoutActivity" />
+    <activity android:name=".activity.DrawLayoutTabLayoutActivity"/>
+    <activity android:name=".activity.ListViewActivity"/>
     </application>
-
 </manifest>

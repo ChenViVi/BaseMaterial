@@ -4,7 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    tools:context="com.chenyuwei.basematerial.activity.DrawLayoutActivity"
+    tools:context="com.chenyuwei.basematerial.demo.activity.DrawLayoutActivity"
     android:id="@+id/drawer_layout">
     <RelativeLayout
         android:layout_width="match_parent"
@@ -18,7 +18,7 @@
     </RelativeLayout>
     <fragment
         android:id="@+id/fragment_navigation_drawer"
-        android:name="com.chenyuwei.basematerial.fragment.DrawFragment"
+        android:name="com.chenyuwei.basematerial.demo.fragment.DrawFragment"
         android:layout_width="240dp"
         android:layout_height="match_parent"
         android:layout_gravity="start"
