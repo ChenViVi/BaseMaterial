@@ -20,6 +20,6 @@
     <activity android:name=".activity.DrawLayoutActivity" />
     <activity android:name=".activity.DrawLayoutTabLayoutActivity"/>
     <activity android:name=".activity.ListViewActivity"/>
-    <activity android:name=".activity.RecycleViewActivity"/>
+    <activity android:name=".activity.RecyclerViewActivity"/>
     </application>
 </manifest>

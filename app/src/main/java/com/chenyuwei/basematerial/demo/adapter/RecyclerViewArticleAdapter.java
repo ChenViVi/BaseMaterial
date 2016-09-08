@@ -15,9 +15,9 @@ import java.util.List;
 /**
  * Created by vivi on 2016/8/10.
  */
-public class RecycleViewArticleAdapter extends BaseRecyclerViewAdapter<Article,RecycleViewArticleAdapter.ViewHolder> {
+public class RecyclerViewArticleAdapter extends BaseRecyclerViewAdapter<Article,RecyclerViewArticleAdapter.ViewHolder> {
 
-    public RecycleViewArticleAdapter(List<Article> data) {
+    public RecyclerViewArticleAdapter(List<Article> data) {
         super(data);
     }
 

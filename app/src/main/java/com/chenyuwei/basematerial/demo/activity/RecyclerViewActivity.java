@@ -3,10 +3,8 @@ package com.chenyuwei.basematerial.demo.activity;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 
-import com.chenyuwei.basematerial.activity.BaseListViewActivity;
-import com.chenyuwei.basematerial.activity.BaseRecycleViewActivity;
-import com.chenyuwei.basematerial.demo.adapter.ListViewArticleAdapter;
-import com.chenyuwei.basematerial.demo.adapter.RecycleViewArticleAdapter;
+import com.chenyuwei.basematerial.activity.BaseRecyclerViewActivity;
+import com.chenyuwei.basematerial.demo.adapter.RecyclerViewArticleAdapter;
 import com.chenyuwei.basematerial.demo.modle.Article;
 
 import java.util.ArrayList;
@@ -14,7 +12,7 @@ import java.util.ArrayList;
 /**
  * Created by vivi on 2016/9/3.
  */
-public class RecycleViewActivity extends BaseRecycleViewActivity<Article,RecycleViewArticleAdapter> {
+public class RecyclerViewActivity extends BaseRecyclerViewActivity<Article,RecyclerViewArticleAdapter> {
 
     ArrayList<Article> items = new ArrayList<>();
 
@@ -30,8 +28,8 @@ public class RecycleViewActivity extends BaseRecycleViewActivity<Article,Recycle
     }
 
     @Override
-    protected RecycleViewArticleAdapter setAdapter() {
-        return new RecycleViewArticleAdapter(data);
+    protected RecyclerViewArticleAdapter setAdapter() {
+        return new RecyclerViewArticleAdapter(data);
     }
 
     @Override

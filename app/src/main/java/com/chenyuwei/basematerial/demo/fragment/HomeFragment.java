@@ -9,7 +9,7 @@ import com.chenyuwei.basematerial.demo.activity.CollapsingToolbarLayoutActivity;
 import com.chenyuwei.basematerial.demo.activity.DrawLayoutActivity;
 import com.chenyuwei.basematerial.demo.activity.DrawLayoutTabLayoutActivity;
 import com.chenyuwei.basematerial.demo.activity.ListViewActivity;
-import com.chenyuwei.basematerial.demo.activity.RecycleViewActivity;
+import com.chenyuwei.basematerial.demo.activity.RecyclerViewActivity;
 import com.chenyuwei.basematerial.demo.activity.TabBottomActivity;
 import com.chenyuwei.basematerial.demo.activity.TabTopActivity;
 import com.chenyuwei.basematerial.fragment.BaseFragment;
@@ -66,7 +66,7 @@ public class HomeFragment extends BaseFragment {
                 startActivity(ListViewActivity.class);
                 break;
             case R.id.btnRecycleViewActivity:
-                startActivity(RecycleViewActivity.class);
+                startActivity(RecyclerViewActivity.class);
                 break;
             case R.id.btnTabBottomActivity:
                 startActivity(TabBottomActivity.class);
