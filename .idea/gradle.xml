@@ -11,8 +11,7 @@
             <option value="$PROJECT_DIR$" />
             <option value="$PROJECT_DIR$/app" />
             <option value="$PROJECT_DIR$/base-material" />
-            <option value="$PROJECT_DIR$/load-image-view" />
-            <option value="$PROJECT_DIR$/super-recycle-view" />
+            <option value="$PROJECT_DIR$/super-recycler-view" />
             <option value="$PROJECT_DIR$/xlistview" />
           </set>
         </option>
@@ -21,8 +20,7 @@
             <option value="$PROJECT_DIR$" />
             <option value="$PROJECT_DIR$/app" />
             <option value="$PROJECT_DIR$/base-material" />
-            <option value="$PROJECT_DIR$/load-image-view" />
-            <option value="$PROJECT_DIR$/super-recycle-view" />
+            <option value="$PROJECT_DIR$/super-recycler-view" />
             <option value="$PROJECT_DIR$/xlistview" />
           </set>
         </option>

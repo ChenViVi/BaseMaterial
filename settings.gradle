@@ -1,1 +1,1 @@
-include ':app', ':xlistview', ':load-image-view', ':base-material', ':super-recycle-view'
+include ':app', ':xlistview', ':base-material', ':super-recycler-view'

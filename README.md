@@ -7,7 +7,7 @@
 
   [xlistview](#1.1)
 
-  [load-image-view](#1.2)
+  [super-recycler-view](#1.2)
 
 2. \network
 
@@ -37,7 +37,9 @@
 
   [BaseListViewFragment](#6.2)
 
-  [BaseDrawerFragment](#6.3)
+  [BaseRecyclerViewFragment](#6.3)
+
+  [BaseDrawerFragment](#6.4)
 
 7. \activity
 
@@ -45,22 +47,24 @@
 
   [BaseListViewActivity](#7.2)
 
-  [BaseTabTopActivity](#7.3)
+  [BaseRecyclerViewActivity](#7.3)
 
-  [BaseTabBottomActivity](#7.4)
+  [BaseTabTopActivity](#7.4)
+
+  [BaseTabBottomActivity](#7.5)
 
 ### <span id="1.1">xlistview</span>
 #### 简介
-支持双向加载的ListView。这个是别人写的，只是为了保持控件的包名一致，方便以后复制粘贴XML，要知道由于XML中定义的控件不存在就会导致闪退的。
+支持双向加载的ListView
 #### 使用说明
 [直接看原作吧](https://github.com/Maxwin-z/XListView-Android)
 
-### <span id="1.2"> load-image-view</span>
+### <span id="1.2"> super-recycler-view</span>
 #### 简介
-这个是我以前写的由Glide封装的的图片加载框架。
+支持双向加载的RecyclerView
 
 #### 使用说明
-[直接看原作吧](https://github.com/ChenViVi/LoadImageView)
+[直接看原作吧](https://github.com/supercwn/SuperRecycleView)
 
 ### <span id="2.1">network\RequestMaker</span>
 #### 简介
@@ -292,6 +296,68 @@ void | stopRefresh() |  | 停止下拉刷新
 void | stopLoadMore() |  | 停止上拉加载更多
 void | setOnItemClickListener(BaseListViewAdapter.OnItemClickListener<Item> listener) | 自己体会 | 为ListView项目添加点击事件
 
+### <span id="6.3">fragment\BaseRecyclerViewFragment</span>
+#### 简介
+只显示ListView的Fragment继承它就好了，支持双向加载 更多
+#### 使用说明
+成员变量
+
+类型 | 名称 | 说明
+----|------|----
+ArrayList<Item> | data | RecyclerView中的项目
+
+方法
+
+类型 | 名称 | 参数 | 说明
+----|------|----|----|
+void | clearItems() |  | 清空RecyclerView所有项目并刷新Adapter
+void | addItems(List< Item> items) | 自己体会 | 添加项目集合并刷新Adapter
+void| setPullLoadEnable(boolean enable) | 自己体会 | 设定RecyclerView是否支持上拉加载更多,默认不支持
+void | setPullRefreshEnable(boolean enable) | 自己体会 | 设定RecyclerView是否支持上下拉刷新,默认不支持
+void | stopRefresh() |  | 停止下拉刷新
+void | stopLoadMore() |  | 停止上拉加载更多
+void | setOnItemClickListener(BaseRecyclerViewAdapter.OnItemClickListener<Item> listener) | 自己体会 | 为RecyclerView项目添加点击事件
+
+示例
+
+```
+public class RecyclerViewFragment extends BaseRecyclerViewFragment<Article,RecyclerViewArticleAdapter> {
+
+    ArrayList<Article> items = new ArrayList<>();
+
+    @Override
+    protected void onCreateView() {
+        super.onCreateView();
+        for (int i = 0; i < 20; i++){
+            items.add(new Article("title"+String.valueOf(i)));
+        }
+        addItems(items);
+        setPullRefreshEnable(true);
+        setPullLoadEnable(true);
+    }
+
+    @Override
+    protected RecyclerViewArticleAdapter setAdapter() {
+        return new RecyclerViewArticleAdapter(data);
+    }
+
+    @Override
+    public void onRefresh() {
+        super.onRefresh();
+        clearItems();
+        addItems(items);
+        stopRefresh();
+    }
+
+    @Override
+    public void onLoadMore() {
+        super.onLoadMore();
+        addItems(items);
+        stopLoadMore();
+    }
+}
+```
+
 ### <span id="6.3">fragment\BaseDrawerFragment</span>
 #### 简介
 作为侧栏导航的Fragment继承它就好了
@@ -443,7 +509,68 @@ public class ListViewActivity extends BaseListViewActivity<Article,ArticleAdapte
 }
 ```
 
-### <span id="7.3>activity\BaseTabTopActivity</span>
+### <span id="7.3">activity\BaseListViewActivity</span>
+#### 简介
+只显示ToolBar和ListView的Activity继承它就好了，支持双向加载 更多
+#### 使用说明
+成员变量
+
+类型 | 名称 | 说明
+----|------|----
+ArrayList<Item> | data | ListView中的项目
+
+方法
+
+类型 | 名称 | 参数 | 说明
+----|------|----|----|
+void | clearItems() |  | 清空RecyclerView所有项目并刷新Adapter
+void | addItems(List< Item> items) | 自己体会 | 添加项目集合并刷新Adapter
+void| setPullLoadEnable(boolean enable) | 自己体会 | 设定RecyclerView是否支持上拉加载更多,默认不支持
+void | setPullRefreshEnable(boolean enable) | 自己体会 | 设定RecyclerView是否支持上下拉刷新,默认不支持
+void | stopRefresh() |  | 停止下拉刷新
+void | stopLoadMore() |  | 停止上拉加载更多
+void | setOnItemClickListener(BaseRecyclerViewViewAdapter.OnItemClickListener<Item> listener) | 自己体会 | 为RecyclerView项目添加点击事件
+
+示例
+```
+public class RecyclerViewActivity extends BaseRecyclerViewActivity<Article,RecyclerViewArticleAdapter> {
+
+    ArrayList<Article> items = new ArrayList<>();
+
+    @Override
+    protected void onCreate(@Nullable Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        for (int i = 0; i < 20; i++){
+            items.add(new Article("title"+String.valueOf(i)));
+        }
+        addItems(items);
+        setPullRefreshEnable(true);
+        setPullLoadEnable(true);
+    }
+
+    @Override
+    protected RecyclerViewArticleAdapter setAdapter() {
+        return new RecyclerViewArticleAdapter(data);
+    }
+
+    @Override
+    public void onRefresh() {
+        super.onRefresh();
+        clearItems();
+        addItems(items);
+        stopRefresh();
+    }
+
+    @Override
+    public void onLoadMore() {
+        super.onLoadMore();
+        addItems(items);
+        stopLoadMore();
+    }
+}
+```
+
+### <span id="7.4>activity\BaseTabTopActivity</span>
 #### 简介
 显示ToolBar并需要多个顶部Tab来切换多个Fragment的Activity继承它就好了
 #### 使用说明
@@ -468,7 +595,7 @@ public class TabTopActivity extends BaseTabTopActivity {
 }
 ```
 
-### <span id="7.4>activity\BaseTabBottomActivity</span>
+### <span id="7.5>activity\BaseTabBottomActivity</span>
 #### 简介
 显示ToolBar并需要多个顶部Tab来切换多个Fragment的Activity继承它就好了
 #### 使用说明
