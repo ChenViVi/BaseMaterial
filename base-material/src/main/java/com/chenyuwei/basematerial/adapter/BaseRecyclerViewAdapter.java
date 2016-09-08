@@ -28,15 +28,14 @@ public abstract class BaseRecyclerViewAdapter<Item, Holder extends RecyclerView.
     }
 
     @Override
-    public void onBindViewHolder(RecyclerView.ViewHolder viewHolder, int position) {
-        final int pos = viewHolder.getAdapterPosition();
-        final Item item = this.items.get(pos);
-        onBindViewHolder((Holder)viewHolder, pos, item);
+    public void onBindViewHolder(RecyclerView.ViewHolder viewHolder, final int position) {
+        final Item item = this.items.get(position);
+        onBindViewHolder((Holder)viewHolder, position, item);
         if(onItemClickListener != null) {
             viewHolder.itemView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    onItemClickListener.onItemClick(pos, item);
+                    onItemClickListener.onItemClick(position, item);
                 }
             });
         }

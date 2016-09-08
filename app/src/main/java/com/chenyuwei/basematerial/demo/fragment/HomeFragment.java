@@ -9,6 +9,7 @@ import com.chenyuwei.basematerial.demo.activity.CollapsingToolbarLayoutActivity;
 import com.chenyuwei.basematerial.demo.activity.DrawLayoutActivity;
 import com.chenyuwei.basematerial.demo.activity.DrawLayoutTabLayoutActivity;
 import com.chenyuwei.basematerial.demo.activity.ListViewActivity;
+import com.chenyuwei.basematerial.demo.activity.RecycleViewActivity;
 import com.chenyuwei.basematerial.demo.activity.TabBottomActivity;
 import com.chenyuwei.basematerial.demo.activity.TabTopActivity;
 import com.chenyuwei.basematerial.fragment.BaseFragment;
@@ -25,6 +26,7 @@ public class HomeFragment extends BaseFragment {
     private Button btnDrawLayoutTabLayoutActivity;
     private Button btnCollapsingToolbarLayoutActivity;
     private Button btnListViewActivity;
+    private Button btnRecycleViewActivity;
     private Button btnTabBottomActivity;
 
     @Override
@@ -37,10 +39,10 @@ public class HomeFragment extends BaseFragment {
         super.onCreateView();
         btnTabLayoutActivity = (Button)findViewById(R.id.btnTabLayoutActivity);
         btnDrawLayoutActivity = (Button)findViewById(R.id.btnDrawLayoutActivity);
-        btnBackToolBarActivity = (Button)findViewById(R.id.btnBackToolBarActivity);
         btnDrawLayoutTabLayoutActivity = (Button)findViewById(R.id.btnDrawLayoutTabLayoutActivity);
         btnCollapsingToolbarLayoutActivity = (Button)findViewById(R.id.btnCollapsingToolbarLayoutActivity);
         btnListViewActivity = (Button)findViewById(R.id.btnListViewActivity);
+        btnRecycleViewActivity = (Button)findViewById(R.id.btnRecycleViewActivity);
         btnTabBottomActivity = (Button)findViewById(R.id.btnTabBottomActivity);
     }
 
@@ -62,6 +64,9 @@ public class HomeFragment extends BaseFragment {
                 break;
             case R.id.btnListViewActivity:
                 startActivity(ListViewActivity.class);
+                break;
+            case R.id.btnRecycleViewActivity:
+                startActivity(RecycleViewActivity.class);
                 break;
             case R.id.btnTabBottomActivity:
                 startActivity(TabBottomActivity.class);
