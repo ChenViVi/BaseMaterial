@@ -78,7 +78,7 @@
 #### 使用说明
 ```
 HashMap<String,String[]> map = new HashMap<>();
-map.put("avatar",new String[]{imgPath, imgName);
+map.put("avatar",new String[]{imgPath, imgName});
 queue.add(new PostUploadRequest("http//:111.11.11.11/uploadimg", map, new Response.Listener<JSONObject>() {
     @Override
     public void onResponse(JSONObject jsonObject) {
