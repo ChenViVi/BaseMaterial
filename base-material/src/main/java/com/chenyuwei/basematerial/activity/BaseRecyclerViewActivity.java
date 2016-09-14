@@ -37,7 +37,7 @@ public abstract class BaseRecyclerViewActivity<Item,Adapter extends BaseRecycler
         toolbar = (Toolbar)findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         adapter = setAdapter();
-        setLayoutManager(new LinearLayoutManager(activity));
+        recyclerView.setLayoutManager(setLayoutManager());
         recyclerView.setAdapter(adapter);
         setPullLoadEnable(false);
         setPullRefreshEnable(false);
@@ -45,9 +45,7 @@ public abstract class BaseRecyclerViewActivity<Item,Adapter extends BaseRecycler
         clearItems();
     }
 
-    protected void setLayoutManager(RecyclerView.LayoutManager layoutManager){
-        recyclerView.setLayoutManager(layoutManager);
-    }
+    protected abstract RecyclerView.LayoutManager setLayoutManager();
 
     @Override
     public void onRefresh() {

@@ -38,7 +38,7 @@ public abstract class BaseRecyclerViewFragment<Item,Adapter extends BaseRecycler
         tvTitle = (TextView) findViewById(R.id.tvTitle);
         enableToolBar(false);
         adapter = setAdapter();
-        setLayoutManager(new LinearLayoutManager(activity));
+        recyclerView.setLayoutManager(setLayoutManager());
         recyclerView.setAdapter(adapter);
         setPullLoadEnable(false);
         setPullRefreshEnable(false);
@@ -46,9 +46,7 @@ public abstract class BaseRecyclerViewFragment<Item,Adapter extends BaseRecycler
         clearItems();
     }
 
-    protected void setLayoutManager(RecyclerView.LayoutManager layoutManager){
-        recyclerView.setLayoutManager(layoutManager);
-    }
+    protected abstract RecyclerView.LayoutManager setLayoutManager();
 
     protected void enableToolBar(boolean enable){
         if (enable){

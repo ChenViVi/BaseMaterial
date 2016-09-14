@@ -2,6 +2,8 @@ package com.chenyuwei.basematerial.demo.activity;
 
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.support.v7.widget.GridLayoutManager;
+import android.support.v7.widget.RecyclerView;
 
 import com.chenyuwei.basematerial.activity.BaseRecyclerViewActivity;
 import com.chenyuwei.basematerial.demo.adapter.RecyclerViewArticleAdapter;
@@ -19,12 +21,17 @@ public class RecyclerViewActivity extends BaseRecyclerViewActivity<Article,Recyc
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        for (int i = 0; i < 20; i++){
+        for (int i = 0; i < 40; i++){
             items.add(new Article("title"+String.valueOf(i)));
         }
         addItems(items);
         setPullRefreshEnable(true);
         setPullLoadEnable(true);
+    }
+
+    @Override
+    protected RecyclerView.LayoutManager setLayoutManager() {
+        return new GridLayoutManager(activity,3);
     }
 
     @Override

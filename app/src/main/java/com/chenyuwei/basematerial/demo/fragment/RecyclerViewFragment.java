@@ -1,5 +1,8 @@
 package com.chenyuwei.basematerial.demo.fragment;
 
+import android.support.v7.widget.GridLayoutManager;
+import android.support.v7.widget.RecyclerView;
+
 import com.chenyuwei.basematerial.demo.adapter.RecyclerViewArticleAdapter;
 import com.chenyuwei.basematerial.demo.modle.Article;
 import com.chenyuwei.basematerial.fragment.BaseRecyclerViewFragment;
@@ -16,12 +19,17 @@ public class RecyclerViewFragment extends BaseRecyclerViewFragment<Article,Recyc
     @Override
     protected void onCreateView() {
         super.onCreateView();
-        for (int i = 0; i < 20; i++){
+        for (int i = 0; i < 40; i++){
             items.add(new Article("title"+String.valueOf(i)));
         }
         addItems(items);
         setPullRefreshEnable(true);
         setPullLoadEnable(true);
+    }
+
+    @Override
+    protected RecyclerView.LayoutManager setLayoutManager() {
+        return new GridLayoutManager(activity,3);
     }
 
     @Override
