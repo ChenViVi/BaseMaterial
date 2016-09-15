@@ -284,6 +284,13 @@ public class HomeFragment extends BaseFragment {
 ----|------|----
 ArrayList<Item> | data | ListView中的项目
 
+类型参数
+
+类型 | 名称 | 说明
+----|------|------
+Object | Item | 数据模型
+BaseListViewAdapter | Adapter | ListView的适配器
+
 方法
 
 类型 | 名称 | 参数 | 说明
@@ -306,10 +313,19 @@ void | setOnItemClickListener(BaseListViewAdapter.OnItemClickListener<Item> list
 ----|------|----
 ArrayList<Item> | data | RecyclerView中的项目
 
+类型参数
+
+类型 | 名称 | 说明
+----|------|------
+Object | Item | 数据模型
+BaseRecyclerViewAdapter | Adapter | RecyclerView的适配器
+
 方法
 
 类型 | 名称 | 参数 | 说明
 ----|------|----|----|
+abstract RecyclerView.LayoutManager | setLayoutManager() | | 为RecyclerView设置布局管理器
+abstract Adapter | setAdapter() | | 为RecyclerView设置适配器
 void | clearItems() |  | 清空RecyclerView所有项目并刷新Adapter
 void | addItems(List< Item> items) | 自己体会 | 添加项目集合并刷新Adapter
 void| setPullLoadEnable(boolean enable) | 自己体会 | 设定RecyclerView是否支持上拉加载更多,默认不支持
@@ -328,12 +344,17 @@ public class RecyclerViewFragment extends BaseRecyclerViewFragment<Article,Recyc
     @Override
     protected void onCreateView() {
         super.onCreateView();
-        for (int i = 0; i < 20; i++){
+        for (int i = 0; i < 40; i++){
             items.add(new Article("title"+String.valueOf(i)));
         }
         addItems(items);
         setPullRefreshEnable(true);
         setPullLoadEnable(true);
+    }
+
+    @Override
+    protected RecyclerView.LayoutManager setLayoutManager() {
+        return new GridLayoutManager(activity,3);
     }
 
     @Override
@@ -458,6 +479,14 @@ public class CollapsingToolbarLayoutActivity extends BaseActivity {
 ----|------|----
 ArrayList<Item> | data | ListView中的项目
 
+类型参数
+
+类型 | 名称 | 说明
+----|------|------
+Object | Item | 数据模型
+BaseListViewAdapter | Adapter | ListView的适配器
+
+
 方法
 
 类型 | 名称 | 参数 | 说明
@@ -509,20 +538,29 @@ public class ListViewActivity extends BaseListViewActivity<Article,ArticleAdapte
 }
 ```
 
-### <span id="7.3">activity\BaseListViewActivity</span>
+### <span id="7.3">activity\BaseRecyclerView</span>
 #### 简介
-只显示ToolBar和ListView的Activity继承它就好了，支持双向加载 更多
+只显示ToolBar和BaseRecyclerView的Activity继承它就好了，支持双向加载更多
 #### 使用说明
 成员变量
 
 类型 | 名称 | 说明
 ----|------|----
-ArrayList<Item> | data | ListView中的项目
+ArrayList<Item> | data | RecyclerView中的项目
+
+类型参数
+
+类型 | 名称 | 说明
+----|------|------
+Object | Item | 数据模型
+BaseRecyclerViewAdapter | Adapter | RecyclerView的适配器
 
 方法
 
 类型 | 名称 | 参数 | 说明
 ----|------|----|----|
+abstract RecyclerView.LayoutManager | setLayoutManager() | | 为RecyclerView设置布局管理器
+abstract Adapter | setAdapter() | | 为RecyclerView设置适配器
 void | clearItems() |  | 清空RecyclerView所有项目并刷新Adapter
 void | addItems(List< Item> items) | 自己体会 | 添加项目集合并刷新Adapter
 void| setPullLoadEnable(boolean enable) | 自己体会 | 设定RecyclerView是否支持上拉加载更多,默认不支持
@@ -540,12 +578,17 @@ public class RecyclerViewActivity extends BaseRecyclerViewActivity<Article,Recyc
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        for (int i = 0; i < 20; i++){
+        for (int i = 0; i < 40; i++){
             items.add(new Article("title"+String.valueOf(i)));
         }
         addItems(items);
         setPullRefreshEnable(true);
         setPullLoadEnable(true);
+    }
+
+    @Override
+    protected RecyclerView.LayoutManager setLayoutManager() {
+        return new GridLayoutManager(activity,3);
     }
 
     @Override
