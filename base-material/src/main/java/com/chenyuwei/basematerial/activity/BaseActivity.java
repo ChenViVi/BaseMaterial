@@ -1,7 +1,9 @@
 package com.chenyuwei.basematerial.activity;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
@@ -21,6 +23,7 @@ public abstract class BaseActivity extends AppCompatActivity implements View.OnC
     protected View rootView;
     protected RequestQueue appQueue;
     protected RequestQueue queue;
+    protected SharedPreferences preferences;
 
     protected abstract int onBindView();
 
@@ -32,6 +35,7 @@ public abstract class BaseActivity extends AppCompatActivity implements View.OnC
         setContentView(rootView);
         appQueue = Volley.newRequestQueue(activity);
         queue = ((BaseApplication)activity.getApplication()).getQueue();
+        preferences = PreferenceManager.getDefaultSharedPreferences(activity);
     }
 
     protected void toast(String message){

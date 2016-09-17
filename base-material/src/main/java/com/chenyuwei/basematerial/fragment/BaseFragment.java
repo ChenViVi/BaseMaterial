@@ -2,7 +2,9 @@ package com.chenyuwei.basematerial.fragment;
 
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
 import android.support.v4.app.Fragment;
 import android.support.v7.app.AppCompatActivity;
 import android.view.LayoutInflater;
@@ -24,6 +26,7 @@ public abstract class BaseFragment extends Fragment implements View.OnClickListe
     protected View rootView;
     protected RequestQueue appQueue;
     protected RequestQueue queue;
+    protected SharedPreferences preferences;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -31,6 +34,7 @@ public abstract class BaseFragment extends Fragment implements View.OnClickListe
         activity = (AppCompatActivity) getActivity();
         appQueue = Volley.newRequestQueue(activity);
         queue = ((BaseApplication)activity.getApplication()).getQueue();
+        preferences = PreferenceManager.getDefaultSharedPreferences(activity);
     }
 
     @Override
