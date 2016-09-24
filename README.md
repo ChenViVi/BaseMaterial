@@ -227,7 +227,7 @@ public class ArticleAdapter extends BaseRecyclerViewAdapter<Article,ArticleAdapt
 
 ### <span id="6.1">fragment\BaseFragment</span>
 #### 简介
-封装后的Fragment
+提供一些Fragment中常用的成员变量和方法，请确保所有的Fragment类均继承此类
 #### 使用说明
 
 成员变量
@@ -238,6 +238,7 @@ AppCompatActivity | activity |  与当前Fragment绑定的AppCompatActivity实�
 View | rootView |  当前Fragment的根布局View
 RequestQueue | appQueue |  Appliaction的Volley请求队列
 RequestQueue | queue |  当前Fragment的Volley请求队列
+SharedPreferences | preferences | 此App默认的SharedPreferences
 
 方法
 
@@ -276,7 +277,7 @@ public class HomeFragment extends BaseFragment {
 
 ### <span id="6.2">fragment\BaseListViewFragment</span>
 #### 简介
-只显示ListView的Fragment继承它就好了，支持双向加载 更多
+只显示ListView的Fragment继承它就好了，支持双向加载更多
 #### 使用说明
 成员变量
 
@@ -423,7 +424,7 @@ public class DrawLayoutActivity extends BaseActivity {
 ```
 ### <span id="7.1">activity\BaseActivity</span>
 #### 简介
-封装后的AppCompatActivity
+封装后的AppCompatActivity，提供一些Activity中常用的成员变量和方法，请确保所有的Activity类均继承此类
 #### 使用说明
 成员变量
 
@@ -433,6 +434,7 @@ AppCompatActivity | activity |  与当前Activity的实例
 View | rootView |  当前Activity的根布局View
 RequestQueue | appQueue |  Appliaction的Volley请求队列
 RequestQueue | queue |  当前Activity的Volley请求队列
+SharedPreferences | preferences | 此App默认的SharedPreferences
 
 方法
 
