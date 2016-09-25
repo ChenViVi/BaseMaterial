@@ -5,6 +5,7 @@ import android.view.View;
 import android.widget.Button;
 
 import com.chenyuwei.basematerial.demo.R;
+import com.chenyuwei.basematerial.demo.activity.CollapsingToolbarLayoutActivity;
 import com.chenyuwei.basematerial.demo.activity.DrawLayoutActivity;
 import com.chenyuwei.basematerial.demo.activity.DrawLayoutTabLayoutActivity;
 import com.chenyuwei.basematerial.demo.activity.ListViewActivity;
@@ -57,6 +58,9 @@ public class HomeFragment extends BaseFragment {
                 break;
             case R.id.btnDrawLayoutTabLayoutActivity:
                 startActivity(DrawLayoutTabLayoutActivity.class);
+                break;
+            case R.id.btnCollapsingToolbarLayoutActivity:
+                startActivity(CollapsingToolbarLayoutActivity.class);
                 break;
             case R.id.btnListViewActivity:
                 startActivity(ListViewActivity.class);

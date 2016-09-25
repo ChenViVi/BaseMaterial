@@ -32,6 +32,14 @@
             android:text="DrawLayoutTabLayoutActivity"
             android:layout_marginTop="20dp"/>
         <Button
+            android:id="@+id/btnCollapsingToolbarLayoutActivity"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/shape_btn"
+            android:textColor="@color/textWhite"
+            android:text="CollapsingToolbarLayoutActivity"
+            android:layout_marginTop="20dp"/>
+        <Button
             android:id="@+id/btnListViewActivity"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"

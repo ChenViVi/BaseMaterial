@@ -1,6 +1,5 @@
 package com.chenyuwei.basematerial.fragment;
 
-import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
@@ -32,18 +31,13 @@ public abstract class BaseRecyclerViewFragment<Item,Adapter extends BaseRecycler
     }
 
     @Override
-    public void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        adapter = setAdapter();
-    }
-
-    @Override
     protected void onCreateView() {
         super.onCreateView();
         recyclerView = (SuperRecyclerView) findViewById(R.id.recyclerView);
         toolbar = (Toolbar) findViewById(R.id.toolbar);
         tvTitle = (TextView) findViewById(R.id.tvTitle);
         enableToolBar(false);
+        adapter = setAdapter();
         recyclerView.setLayoutManager(setLayoutManager());
         recyclerView.setAdapter(adapter);
         setPullLoadEnable(false);
