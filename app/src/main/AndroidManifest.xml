@@ -15,8 +15,7 @@
             <category android:name="android.intent.category.LAUNCHER" />
         </intent-filter>
     </activity>
-    <activity android:name=".activity.CollapsingToolbarLayoutActivity" />
-    <activity android:name=".activity.TabBottomActivity" />
+        <activity android:name=".activity.TabBottomActivity" />
     <activity android:name=".activity.DrawLayoutActivity" />
     <activity android:name=".activity.DrawLayoutTabLayoutActivity"/>
     <activity android:name=".activity.ListViewActivity"/>
