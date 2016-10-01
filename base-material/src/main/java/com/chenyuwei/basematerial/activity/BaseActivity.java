@@ -42,6 +42,10 @@ public abstract class BaseActivity extends AppCompatActivity implements View.OnC
         Toast.makeText(activity, message, Toast.LENGTH_SHORT).show();
     }
 
+    protected void toast(int id){
+        Toast.makeText(activity, getResources().getString(id), Toast.LENGTH_SHORT).show();
+    }
+
     protected void startActivity(Class<?> cls){
         startActivity(new Intent(activity, cls));
     }

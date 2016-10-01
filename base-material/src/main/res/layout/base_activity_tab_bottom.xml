@@ -3,7 +3,10 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".activity.base.BaseTabBottomActivity">
+    tools:context=".activity.BaseTabBottomActivity">
+    <include
+        android:id="@+id/toolbar"
+        layout="@layout/toolbar" />
     <com.ashokvarma.bottomnavigation.BottomNavigationBar
         android:id="@+id/bottom_bar"
         android:layout_width="match_parent"

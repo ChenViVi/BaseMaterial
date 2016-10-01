@@ -1,5 +1,7 @@
 package com.chenyuwei.basematerial.adapter;
 
+import android.app.Activity;
+import android.content.Context;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.view.ViewGroup;
@@ -11,11 +13,13 @@ import java.util.List;
  */
 public abstract class BaseRecyclerViewAdapter<Item, Holder extends RecyclerView.ViewHolder> extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
 
+    protected Context context;
     private List<Item> items;
     private OnItemClickListener onItemClickListener;
 
     public BaseRecyclerViewAdapter(List<Item> items){
         this.items = items;
+
     }
 
     public void setOnItemClickListener(OnItemClickListener<Item> listener) {
@@ -24,6 +28,7 @@ public abstract class BaseRecyclerViewAdapter<Item, Holder extends RecyclerView.
 
     @Override
     public RecyclerView.ViewHolder onCreateViewHolder(ViewGroup parent, final int viewType) {
+        context = parent.getContext();
         return onCreateItem(parent, viewType);
     }
 

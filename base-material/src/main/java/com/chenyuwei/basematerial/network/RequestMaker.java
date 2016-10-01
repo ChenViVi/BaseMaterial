@@ -14,6 +14,9 @@ import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.chenyuwei.basematerial.BaseApplication;
 
+import org.json.JSONException;
+import org.json.JSONObject;
+
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.Map;
@@ -66,17 +69,35 @@ public abstract class RequestMaker {
     private void requestGet(){
         queue.add(new StringRequest(Request.Method.GET, baseUrl + url, new Response.Listener<String>() {
             @Override
-            public void onResponse(String response) {
+            public void onResponse(String s) {
+                int state = 0;
+                String data = null;
                 try {
-                    onSuccess(response);
+                    JSONObject response= new JSONObject(s);
+                    state = response.getInt("state");
+                    if (state == 0){
+                        onError(response.getInt("code"),response.getString("error_msg"));
+                    }
+                    else if (state == 1){
+                        data =  response.getString("data");
+                        onSuccess(data);
+                    }
+                    else {
+                        Toast.makeText(activity, "网络连接失败", Toast.LENGTH_SHORT).show();
+                    }
+                } catch (JSONException e) {
+                    e.printStackTrace();
                 }
                 finally {
                     if (tag != null){
-                        if (response != null){
-                            Log.e("response",tag + "=>"+ "response=" + response);
+                        Log.e("response",tag + "=>"+ "url=" + url);
+                        Log.e("response",tag + "=>"+ "response=" + s);
+                        Log.e("response",tag + "=>"+ "state=" + state);
+                        if (data != null){
+                            Log.e("response",tag + "=>"+ "data=" + data.toString());
                         }
                         else {
-                            Log.e("response",tag + "=>"+ "response=" + "no data in response");
+                            Log.e("response",tag + "=>"+ "data=" + "no data in response");
                         }
                     }
                 }
@@ -87,25 +108,6 @@ public abstract class RequestMaker {
                 onFail();
             }
         }){
-            @Override
-            protected Map<String, String> getParams() throws AuthFailureError {
-                if (tag != null && onPost() != null){
-                    Log.e("response",tag + "=>"+ "url=" + url);
-                    HashMap<String,String> map = onPost();
-                    Iterator iterator = map.entrySet().iterator();
-                    while (iterator.hasNext()){
-                        Map.Entry entry = (Map.Entry) iterator.next();
-                        String key = (String)entry.getKey();
-                        String val = (String)entry.getValue();
-                        Log.e("response",tag + "=>"+ key + "=" + val);
-                    }
-                }
-                if (onPost() != null){
-                    return onPost();
-                }
-                return super.getParams();
-            }
-
             @Override
             public void setRetryPolicy(RetryPolicy retryPolicy) {
                 super.setRetryPolicy(new DefaultRetryPolicy(failedTime,0, DefaultRetryPolicy.DEFAULT_BACKOFF_MULT));
@@ -116,17 +118,35 @@ public abstract class RequestMaker {
     private void requestPost(){
         queue.add(new StringRequest(Request.Method.POST,baseUrl +url, new Response.Listener<String>() {
             @Override
-            public void onResponse(String response) {
+            public void onResponse(String s) {
+                int state = 0;
+                String data = null;
                 try {
-                    onSuccess(response);
+                    JSONObject response= new JSONObject(s);
+                    state = response.getInt("state");
+                    if (state == 0){
+                        onError(response.getInt("code"),response.getString("error_msg"));
+                    }
+                    else if (state == 1){
+                        data =  response.getString("data");
+                        onSuccess(data);
+                    }
+                    else {
+                        Toast.makeText(activity, "网络连接失败", Toast.LENGTH_SHORT).show();
+                    }
+                } catch (JSONException e) {
+                    e.printStackTrace();
                 }
                 finally {
                     if (tag != null){
-                        if (response != null){
-                            Log.e("response",tag + "=>"+ "response=" + response);
+                        Log.e("response",tag + "=>"+ "url=" + baseUrl + url);
+                        Log.e("response",tag + "=>"+ "response=" + s);
+                        Log.e("response",tag + "=>"+ "state=" + state);
+                        if (data != null){
+                            Log.e("response",tag + "=>"+ "data=" + data);
                         }
                         else {
-                            Log.e("response",tag + "=>"+ "response=" + "no data in response");
+                            Log.e("response",tag + "=>"+ "data=" + "no data in response");
                         }
                     }
                 }
@@ -140,14 +160,13 @@ public abstract class RequestMaker {
             @Override
             protected Map<String, String> getParams() throws AuthFailureError {
                 if (tag != null && onPost() != null){
-                    Log.e("response",tag + "=>"+ "url=" + url);
                     HashMap<String,String> map = onPost();
                     Iterator iterator = map.entrySet().iterator();
                     while (iterator.hasNext()){
                         Map.Entry entry = (Map.Entry) iterator.next();
                         String key = (String)entry.getKey();
                         String val = (String)entry.getValue();
-                        Log.e("response",tag + "=>"+ key + "=" + val);
+                        Log.e("response",tag + "=>"+"param: "+ key + "=" + val);
                     }
                 }
                 if (onPost() != null){
@@ -163,10 +182,14 @@ public abstract class RequestMaker {
         });
     }
 
-    protected abstract void onSuccess(String response);
+    protected abstract void onSuccess(String response) throws JSONException;
 
     protected void onFail(){
         Toast.makeText(activity,"网络连接失败", Toast.LENGTH_SHORT).show();
+    }
+
+    protected void onError(int code,String message){
+        Toast.makeText(activity,message, Toast.LENGTH_SHORT).show();
     }
 
     protected HashMap<String, String> onPost(){
