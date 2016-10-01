@@ -18,7 +18,6 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.util.HashMap;
-import java.util.Iterator;
 import java.util.Map;
 
 /**
@@ -28,36 +27,36 @@ public abstract class RequestMaker {
 
     private static String baseUrl = "";
     protected Activity activity;
-    protected String url;
     protected String tag;
     private int failedTime = 5000;
     private RequestQueue queue;
+    private HashMap<String,String> map = new HashMap<>();
 
     public RequestMaker(Activity activity, Method method,String url) {
         this.activity = activity;
-        this.url = url;
         queue = ((BaseApplication) activity.getApplication()).getQueue();
+        setParams(map);
         switch(method) {
             case GET:
-                requestGet();
+                requestGet(url);
                 break;
             case POST:
-                requestPost();
+                requestPost(url);
                 break;
         }
     }
 
     public RequestMaker(Activity activity,Method method,String url,String tag) {
         this.activity = activity;
-        this.url = url;
         this.tag = tag;
         queue = ((BaseApplication) activity.getApplication()).getQueue();
+        setParams(map);
         switch(method) {
             case GET:
-                requestGet();
+                requestGet(url);
                 break;
             case POST:
-                requestPost();
+                requestPost(url);
                 break;
         }
     }
@@ -66,8 +65,26 @@ public abstract class RequestMaker {
         GET, POST
     }
 
-    private void requestGet(){
-        queue.add(new StringRequest(Request.Method.GET, baseUrl + url, new Response.Listener<String>() {
+    private void requestGet(String url){
+        final StringBuilder builderUrl = new StringBuilder();
+        builderUrl.append(url);
+        if (map.size() != 0){
+            builderUrl.append("?");
+            for (Object object : map.entrySet()) {
+                Map.Entry entry = (Map.Entry) object;
+                String key = (String) entry.getKey();
+                String val = (String) entry.getValue();
+                builderUrl.append(key);
+                builderUrl.append("=");
+                builderUrl.append(val);
+                builderUrl.append("&");
+                if (tag != null){
+                    Log.e("response", tag + "=>" + "param: " + key + "=" + val);
+                }
+            }
+            builderUrl.deleteCharAt(builderUrl.length()-1);
+        }
+        queue.add(new StringRequest(Request.Method.GET, baseUrl + builderUrl.toString(), new Response.Listener<String>() {
             @Override
             public void onResponse(String s) {
                 int state = 0;
@@ -90,11 +107,11 @@ public abstract class RequestMaker {
                 }
                 finally {
                     if (tag != null){
-                        Log.e("response",tag + "=>"+ "url=" + url);
+                        Log.e("response",tag + "=>"+ "url=" + baseUrl + builderUrl.toString());
                         Log.e("response",tag + "=>"+ "response=" + s);
                         Log.e("response",tag + "=>"+ "state=" + state);
                         if (data != null){
-                            Log.e("response",tag + "=>"+ "data=" + data.toString());
+                            Log.e("response",tag + "=>"+ "data=" + data);
                         }
                         else {
                             Log.e("response",tag + "=>"+ "data=" + "no data in response");
@@ -115,7 +132,7 @@ public abstract class RequestMaker {
         });
     }
 
-    private void requestPost(){
+    private void requestPost(final String url){
         queue.add(new StringRequest(Request.Method.POST,baseUrl +url, new Response.Listener<String>() {
             @Override
             public void onResponse(String s) {
@@ -139,7 +156,23 @@ public abstract class RequestMaker {
                 }
                 finally {
                     if (tag != null){
-                        Log.e("response",tag + "=>"+ "url=" + baseUrl + url);
+                        StringBuilder builderUrl = new StringBuilder();
+                        builderUrl.append(url);
+                        if (map.size() != 0){
+                            builderUrl.append("?");
+                            for (Object object : map.entrySet()) {
+                                Map.Entry entry = (Map.Entry) object;
+                                String key = (String) entry.getKey();
+                                String val = (String) entry.getValue();
+                                builderUrl.append(key);
+                                builderUrl.append("=");
+                                builderUrl.append(val);
+                                builderUrl.append("&");
+                                Log.e("response", tag + "=>" + "param: " + key + "=" + val);
+                            }
+                            builderUrl.deleteCharAt(builderUrl.length()-1);
+                        }
+                        Log.e("response",tag + "=>"+ "url=" + baseUrl + builderUrl.toString());
                         Log.e("response",tag + "=>"+ "response=" + s);
                         Log.e("response",tag + "=>"+ "state=" + state);
                         if (data != null){
@@ -159,20 +192,7 @@ public abstract class RequestMaker {
         }){
             @Override
             protected Map<String, String> getParams() throws AuthFailureError {
-                if (tag != null && onPost() != null){
-                    HashMap<String,String> map = onPost();
-                    Iterator iterator = map.entrySet().iterator();
-                    while (iterator.hasNext()){
-                        Map.Entry entry = (Map.Entry) iterator.next();
-                        String key = (String)entry.getKey();
-                        String val = (String)entry.getValue();
-                        Log.e("response",tag + "=>"+"param: "+ key + "=" + val);
-                    }
-                }
-                if (onPost() != null){
-                    return onPost();
-                }
-                return super.getParams();
+                return map;
             }
 
             @Override
@@ -192,8 +212,8 @@ public abstract class RequestMaker {
         Toast.makeText(activity,message, Toast.LENGTH_SHORT).show();
     }
 
-    protected HashMap<String, String> onPost(){
-        return null;
+    protected void setParams(HashMap<String,String> map){
+
     }
 
     protected void setFailedTime(int failedTime) {

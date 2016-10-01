@@ -85,20 +85,25 @@ static void | setBaseUrl(String baseUrl) | 自己体会 | 设置所有网络请�
 abstract void | onSuccess(String data) | data=> 服务器返回json串的data部分 | 当访问网络请求成功时被调用
 protected void | onFail() |  | 当访问网络请求失败时被调用
 protected void | onError(int code,String message) | <br>code=>错误码，意义详情见后端API文档<br/> <br>message=>错误信息br/> | 当访问网络请求错误时被调用
-protected HashMap<String, String> | onPost() |  | 传递参数，使用POST请求时调用
+protected void| setParams(HashMap<String,String> map) | map=>参数表单 | 设置传递参数
 protected void  | setFailedTime(int failedTime) | 自己体会 | 设置当前请求的超时时间
 
-示例1：GET请求
+示例1：GET请求（相当于：[https://www.baidu.com/s?wd=杨永信](https://www.baidu.com/s?wd=杨永信)）
 ```
-new RequestMaker(activity, RequestMaker.Method.GET, "https://www.baidu.com/s?wd=杨永信") {
+new RequestMaker(activity, RequestMaker.Method.GET, "https://www.baidu.com/s") {
     @Override
     protected void onSuccess(String response) throws JSONException {
         toast("杨永信罪该万死！")
     }
+
+    @Override
+    protected void setParams(HashMap<String,String> map) {
+        map.put("wd",“杨永信”);
+    }
 };
 ```
 
-示例2：POST请求
+示例2：POST请求（这个并不能运行 ORZ）
 ```
 new RequestMaker(activity, RequestMaker.Method.POST, "user/login", "user/login") {
     @Override
@@ -107,11 +112,9 @@ new RequestMaker(activity, RequestMaker.Method.POST, "user/login", "user/login")
     }
 
     @Override
-    protected HashMap<String, String> onPost() {
-        HashMap<String, String> map = new HashMap<>();
+    protected void setParams(HashMap<String,String> map) {
         map.put("mobile", editPhone.getText().toString());
         map.put("login_pw", editPassword.getText().toString());
-        return map;
     }
 };                
 ```
