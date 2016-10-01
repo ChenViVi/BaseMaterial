@@ -68,9 +68,53 @@
 
 ### <span id="2.1">network\RequestMaker</span>
 #### 简介
-这个是我以前写的由Volley封装的网络请求加载框架。
+由Volley封装的网络请求加载框架。
 #### 使用说明
-[直接看原作吧](https://github.com/ChenViVi/RequestMaker)
+构造器
+
+名称 | 参数 | 说明|
+------|----|----|
+RequestMaker(Activity activity, Method method,String url) |<br>activity=>当前访问网络请求的Activity<br/> <br>method=>请求的方式<br/> <br>url=>网络地址的子路径（全路径是baseUrl+url）<br/> | 不会输出调试信息，请确保发行版的代码中的所有网络请求全部使用此构造器
+RequestMaker(Activity activity,Method method,String url,String tag) |<br>activity=>当前访问网络请求的Activity<br/> <br>method=>请求的方式<br/> <br>url=>网络地址的子路径（全路径是baseUrl+url）<br/> <br>tag=>输出的调试log的标记<br/> | 会输出调试信息，请确保发行版的代码中的所有网络请求全部没有使用到此构造器
+
+方法
+
+类型 | 名称 | 参数 | 说明
+----|------|----|----|
+static void | setBaseUrl(String baseUrl) | 自己体会 | 设置所有网络请求的基础地址，一般在Application中使用
+abstract void | onSuccess(String data) | data=> 服务器返回json串的data部分 | 当访问网络请求成功时被调用
+protected void | onFail() |  | 当访问网络请求失败时被调用
+protected void | onError(int code,String message) | <br>code=>错误码，意义详情见后端API文档<br/> <br>message=>错误信息br/> | 当访问网络请求错误时被调用
+protected HashMap<String, String> | onPost() |  | 传递参数，使用POST请求时调用
+protected void  | setFailedTime(int failedTime) | 自己体会 | 设置当前请求的超时时间
+
+示例1：GET请求
+```
+new RequestMaker(activity, RequestMaker.Method.GET, "https://www.baidu.com/s?wd=杨永信") {
+    @Override
+    protected void onSuccess(String response) throws JSONException {
+        toast("杨永信罪该万死！")
+    }
+};
+```
+
+示例2：POST请求
+```
+new RequestMaker(activity, RequestMaker.Method.POST, "user/login", "user/login") {
+    @Override
+    protected void onSuccess(String response) throws JSONException {
+        toast("登录成功")
+    }
+
+    @Override
+    protected HashMap<String, String> onPost() {
+        HashMap<String, String> map = new HashMap<>();
+        map.put("mobile", editPhone.getText().toString());
+        map.put("login_pw", editPassword.getText().toString());
+        return map;
+    }
+};                
+```
 
 ### <span id="2.2">network\PostUploadRequest</span>
 #### 简介
