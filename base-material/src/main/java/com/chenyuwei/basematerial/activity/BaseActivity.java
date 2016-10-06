@@ -6,6 +6,8 @@ import android.os.Bundle;
 import android.preference.PreferenceManager;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.Toolbar;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.Toast;
@@ -17,7 +19,7 @@ import com.chenyuwei.basematerial.BaseApplication;
 /**
  * Created by vivi on 2016/8/31.
  */
-public abstract class BaseActivity extends AppCompatActivity implements View.OnClickListener{
+public abstract class BaseActivity extends AppCompatActivity implements View.OnClickListener {
 
     protected BaseActivity activity;
     protected View rootView;
@@ -31,28 +33,38 @@ public abstract class BaseActivity extends AppCompatActivity implements View.OnC
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         activity = this;
-        rootView = View.inflate(activity,onBindView(), null);
+        rootView = View.inflate(activity, onBindView(), null);
         setContentView(rootView);
         appQueue = Volley.newRequestQueue(activity);
-        queue = ((BaseApplication)activity.getApplication()).getQueue();
+        queue = ((BaseApplication) activity.getApplication()).getQueue();
         preferences = PreferenceManager.getDefaultSharedPreferences(activity);
     }
 
-    protected void toast(String message){
+    protected void setSupportActionBar(int id){
+        setSupportActionBar((Toolbar)(findViewById(id)));
+    }
+
+    protected void setDisplayHomeAsUpEnabled(boolean enabled){
+        if (getSupportActionBar() != null){
+            getSupportActionBar().setDisplayHomeAsUpEnabled(enabled);
+        }
+    }
+
+    protected void toast(String message) {
         Toast.makeText(activity, message, Toast.LENGTH_SHORT).show();
     }
 
-    protected void toast(int id){
+    protected void toast(int id) {
         Toast.makeText(activity, getResources().getString(id), Toast.LENGTH_SHORT).show();
     }
 
-    protected void startActivity(Class<?> cls){
+    protected void startActivity(Class<?> cls) {
         startActivity(new Intent(activity, cls));
     }
 
-    public View findViewById(int id){
+    public View findViewById(int id) {
         View view = rootView.findViewById(id);
-        if (!(rootView.findViewById(id) instanceof AdapterView)){
+        if (!(rootView.findViewById(id) instanceof AdapterView)) {
             view.setOnClickListener(this);
         }
         return view;
@@ -61,5 +73,14 @@ public abstract class BaseActivity extends AppCompatActivity implements View.OnC
     @Override
     public void onClick(View view) {
 
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        if (item.getItemId() == android.R.id.home){
+            finish();
+            return true ;
+        }
+        return super.onOptionsItemSelected(item);
     }
 }

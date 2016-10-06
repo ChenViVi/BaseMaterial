@@ -13,7 +13,7 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/tv_notice"
+            android:text="@string/tvNotice"
             android:textSize="20sp"
             android:padding="10dp"/>
         <ImageView
@@ -43,7 +43,7 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:background="@android:color/white"
-                android:text="@string/btn_cancel"
+                android:text="@string/btnCancel"
                 android:textColor="@color/colorPrimary"
                 android:textSize="20sp" />
             <Button
@@ -52,7 +52,7 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:background="@color/colorPrimary"
-                android:text="@string/btn_confirm"
+                android:text="@string/btnConfirm"
                 android:textColor="@color/textWhite"
                 android:textSize="20sp" />
         </LinearLayout>

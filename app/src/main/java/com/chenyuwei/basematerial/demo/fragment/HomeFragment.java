@@ -10,6 +10,7 @@ import com.chenyuwei.basematerial.demo.activity.ListViewActivity;
 import com.chenyuwei.basematerial.demo.activity.RecyclerViewActivity;
 import com.chenyuwei.basematerial.demo.activity.TabBottomActivity;
 import com.chenyuwei.basematerial.demo.activity.TabTopActivity;
+import com.chenyuwei.basematerial.demo.activity.X5X5WebActivity;
 import com.chenyuwei.basematerial.fragment.BaseFragment;
 
 
@@ -55,6 +56,9 @@ public class HomeFragment extends BaseFragment {
                 break;
             case R.id.btnTabBottomActivity:
                 startActivity(TabBottomActivity.class);
+                break;
+            case R.id.btnX5WebActivity:
+                startActivity(X5X5WebActivity.class);
                 break;
         }
     }

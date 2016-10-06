@@ -18,7 +18,8 @@ import java.util.List;
 /**
  * Created by vivi on 2016/9/3.
  */
-public abstract class BaseRecyclerViewActivity<Item,Adapter extends BaseRecyclerViewAdapter> extends BaseActivity implements SuperRecyclerView.LoadingListener{
+
+public abstract class BaseRecyclerViewActivity<Item, Adapter extends BaseRecyclerViewAdapter> extends BaseActivity implements SuperRecyclerView.LoadingListener {
 
     protected ArrayList<Item> data = new ArrayList<>();
     private Adapter adapter;
@@ -34,7 +35,7 @@ public abstract class BaseRecyclerViewActivity<Item,Adapter extends BaseRecycler
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         recyclerView = (SuperRecyclerView) findViewById(R.id.recyclerView);
-        toolbar = (Toolbar)findViewById(R.id.toolbar);
+        toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         adapter = setAdapter();
         recyclerView.setLayoutManager(setLayoutManager());
@@ -57,29 +58,29 @@ public abstract class BaseRecyclerViewActivity<Item,Adapter extends BaseRecycler
 
     }
 
-    protected void setPullLoadEnable(boolean enable){
+    protected void setPullLoadEnable(boolean enable) {
         recyclerView.setLoadMoreEnabled(enable);
     }
 
-    protected void setPullRefreshEnable(boolean enable){
+    protected void setPullRefreshEnable(boolean enable) {
         recyclerView.setRefreshEnabled(enable);
     }
 
-    protected void stopRefresh(){
+    protected void stopRefresh() {
         recyclerView.completeRefresh();
     }
 
-    protected void stopLoadMore(){
+    protected void stopLoadMore() {
         recyclerView.completeLoadMore();
     }
 
-    protected void addItems(List<Item> items){
+    protected void addItems(List<Item> items) {
         data.addAll(items);
         adapter.notifyDataSetChanged();
     }
 
-    protected void clearItems(){
-        if (data.size() > 0){
+    protected void clearItems() {
+        if (data.size() > 0) {
             data.clear();
             adapter.notifyDataSetChanged();
         }
@@ -87,7 +88,7 @@ public abstract class BaseRecyclerViewActivity<Item,Adapter extends BaseRecycler
 
     protected abstract Adapter setAdapter();
 
-    protected void setOnItemClickListener(BaseRecyclerViewAdapter.OnItemClickListener<Item> listener){
+    protected void setOnItemClickListener(BaseRecyclerViewAdapter.OnItemClickListener<Item> listener) {
         adapter.setOnItemClickListener(listener);
     }
 }

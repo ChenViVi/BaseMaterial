@@ -13,6 +13,7 @@ import com.android.volley.RetryPolicy;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.chenyuwei.basematerial.BaseApplication;
+import com.chenyuwei.basematerial.R;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -25,7 +26,7 @@ import java.util.Map;
  */
 public abstract class RequestMaker {
 
-    private static String baseUrl = "";
+    public static String BASE_URl = "";
     protected Activity activity;
     protected String tag;
     private int failedTime = 5000;
@@ -84,7 +85,7 @@ public abstract class RequestMaker {
             }
             builderUrl.deleteCharAt(builderUrl.length()-1);
         }
-        queue.add(new StringRequest(Request.Method.GET, baseUrl + builderUrl.toString(), new Response.Listener<String>() {
+        queue.add(new StringRequest(Request.Method.GET, BASE_URl + builderUrl.toString(), new Response.Listener<String>() {
             @Override
             public void onResponse(String s) {
                 int state = 0;
@@ -107,7 +108,7 @@ public abstract class RequestMaker {
                 }
                 finally {
                     if (tag != null){
-                        Log.e("response",tag + "=>"+ "url=" + baseUrl + builderUrl.toString());
+                        Log.e("response",tag + "=>"+ "url=" + BASE_URl + builderUrl.toString());
                         Log.e("response",tag + "=>"+ "response=" + s);
                         Log.e("response",tag + "=>"+ "state=" + state);
                         if (data != null){
@@ -133,7 +134,7 @@ public abstract class RequestMaker {
     }
 
     private void requestPost(final String url){
-        queue.add(new StringRequest(Request.Method.POST,baseUrl +url, new Response.Listener<String>() {
+        queue.add(new StringRequest(Request.Method.POST, BASE_URl +url, new Response.Listener<String>() {
             @Override
             public void onResponse(String s) {
                 int state = 0;
@@ -149,7 +150,7 @@ public abstract class RequestMaker {
                         onSuccess(data);
                     }
                     else {
-                        Toast.makeText(activity, "网络连接失败", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(activity, activity.getResources().getString(R.string.tsRequestFailed), Toast.LENGTH_SHORT).show();
                     }
                 } catch (JSONException e) {
                     e.printStackTrace();
@@ -172,7 +173,7 @@ public abstract class RequestMaker {
                             }
                             builderUrl.deleteCharAt(builderUrl.length()-1);
                         }
-                        Log.e("response",tag + "=>"+ "url=" + baseUrl + builderUrl.toString());
+                        Log.e("response",tag + "=>"+ "url=" + BASE_URl + builderUrl.toString());
                         Log.e("response",tag + "=>"+ "response=" + s);
                         Log.e("response",tag + "=>"+ "state=" + state);
                         if (data != null){
@@ -205,7 +206,7 @@ public abstract class RequestMaker {
     protected abstract void onSuccess(String response) throws JSONException;
 
     protected void onFail(){
-        Toast.makeText(activity,"网络连接失败", Toast.LENGTH_SHORT).show();
+        Toast.makeText(activity,activity.getResources().getString(R.string.tsRequestFailed), Toast.LENGTH_SHORT).show();
     }
 
     protected void onError(int code,String message){
@@ -218,9 +219,5 @@ public abstract class RequestMaker {
 
     protected void setFailedTime(int failedTime) {
         this.failedTime = failedTime;
-    }
-
-    public static void setBaseUrl(String baseUrl) {
-        RequestMaker.baseUrl = baseUrl;
     }
 }
