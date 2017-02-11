@@ -8,7 +8,7 @@ import android.support.v4.view.ViewPager;
 import android.support.v7.widget.Toolbar;
 
 import com.chenyuwei.basematerial.R;
-import com.chenyuwei.basematerial.adapter.TabAdapter;
+import com.chenyuwei.basematerial.adapter.TabViewPagerAdapter;
 
 /**
  * Created by vivi on 2016/9/3.
@@ -18,7 +18,7 @@ public class BaseTabTopActivity extends BaseActivity {
     protected Toolbar toolbar;
     protected TabLayout tabLayout;
     protected ViewPager viewPager;
-    protected TabAdapter adapterTab;
+    protected TabViewPagerAdapter adapterTab;
 
     @Override
     protected int onBindView() {
@@ -33,7 +33,7 @@ public class BaseTabTopActivity extends BaseActivity {
 
         tabLayout = (TabLayout) findViewById(R.id.tabLayout);
         viewPager= (ViewPager) findViewById(R.id.viewPager);
-        adapterTab = new TabAdapter(getSupportFragmentManager());
+        adapterTab = new TabViewPagerAdapter(getSupportFragmentManager());
         viewPager.setAdapter(adapterTab);
         tabLayout.setupWithViewPager(viewPager);
     }

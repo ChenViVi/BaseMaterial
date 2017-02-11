@@ -79,4 +79,8 @@ public abstract class BaseRecyclerViewAdapter<Item, Holder extends RecyclerView.
     protected void toast(int id) {
         Toast.makeText(activity, activity.getResources().getString(id), Toast.LENGTH_SHORT).show();
     }
+
+    protected void debug() {
+        Toast.makeText(activity, "debug", Toast.LENGTH_SHORT).show();
+    }
 }
