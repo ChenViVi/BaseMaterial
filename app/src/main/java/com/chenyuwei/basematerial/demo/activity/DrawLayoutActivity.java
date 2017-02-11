@@ -8,6 +8,7 @@ import com.chenyuwei.basematerial.demo.R;
 import com.chenyuwei.basematerial.activity.BaseActivity;
 import com.chenyuwei.basematerial.fragment.BaseDrawerFragment;
 
+
 public class DrawLayoutActivity extends BaseActivity {
 
     private Toolbar toolbar;
@@ -21,10 +22,8 @@ public class DrawLayoutActivity extends BaseActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
         toolbar = (Toolbar) findViewById(R.id.toolbar);
         drawerFragment = (BaseDrawerFragment) getSupportFragmentManager().findFragmentById(R.id.fragment_navigation_drawer);
-
         setSupportActionBar(toolbar);
         drawerFragment.setUp(R.id.fragment_navigation_drawer, (DrawerLayout) findViewById(R.id.drawer_layout), toolbar);
     }

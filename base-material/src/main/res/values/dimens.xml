@@ -1,3 +1,6 @@
 <resources>
     <dimen name="tvToolBar">20sp</dimen>
+    <dimen name="tvMax">18sp</dimen>
+    <dimen name="tvMid">16sp</dimen>
+    <dimen name="tvMin">14sp</dimen>
 </resources>

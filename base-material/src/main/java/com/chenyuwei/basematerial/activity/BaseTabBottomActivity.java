@@ -40,6 +40,10 @@ public class BaseTabBottomActivity extends BaseActivity {
         bottomBarUtil.addItem(fragment,getResources().getString(titleId),imgId,R.color.colorPrimary);
     }
 
+    protected void onTabSelected(int position){
+
+    }
+
     protected void initialise(){
         bottomBarUtil.initialise();
     }
@@ -92,6 +96,7 @@ public class BaseTabBottomActivity extends BaseActivity {
         public void onTabSelected(int position) {
             navigationBar.selectTab(position);
             showFragment(position);
+            BaseTabBottomActivity.this.onTabSelected(position);
         }
 
         @Override

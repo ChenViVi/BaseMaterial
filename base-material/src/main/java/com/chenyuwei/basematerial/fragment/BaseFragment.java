@@ -13,10 +13,6 @@ import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.Toast;
 
-import com.android.volley.RequestQueue;
-import com.android.volley.toolbox.Volley;
-import com.chenyuwei.basematerial.BaseApplication;
-
 /**
  * Created by vivi on 2016/7/18.
  */
@@ -24,16 +20,12 @@ public abstract class BaseFragment extends Fragment implements View.OnClickListe
 
     protected AppCompatActivity activity;
     protected View rootView;
-    protected RequestQueue appQueue;
-    protected RequestQueue queue;
     protected SharedPreferences preferences;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         activity = (AppCompatActivity) getActivity();
-        appQueue = Volley.newRequestQueue(activity);
-        queue = ((BaseApplication)activity.getApplication()).getQueue();
         preferences = PreferenceManager.getDefaultSharedPreferences(activity);
     }
 
@@ -60,6 +52,10 @@ public abstract class BaseFragment extends Fragment implements View.OnClickListe
 
     protected void toast(int id){
         Toast.makeText(activity, getResources().getString(id), Toast.LENGTH_SHORT).show();
+    }
+
+    protected void debug() {
+        Toast.makeText(activity, "debug", Toast.LENGTH_SHORT).show();
     }
 
     protected void startActivity(Class<?> cls){

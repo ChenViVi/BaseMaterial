@@ -5,9 +5,9 @@ import android.support.annotation.Nullable;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
 
-import com.chenyuwei.basematerial.activity.BaseRecyclerViewActivity;
 import com.chenyuwei.basematerial.demo.adapter.RecyclerViewArticleAdapter;
 import com.chenyuwei.basematerial.demo.modle.Article;
+import com.chenyuwei.basematerial.activity.BaseRecyclerViewActivity;
 
 import java.util.ArrayList;
 
@@ -36,7 +36,7 @@ public class RecyclerViewActivity extends BaseRecyclerViewActivity<Article,Recyc
 
     @Override
     protected RecyclerViewArticleAdapter setAdapter() {
-        return new RecyclerViewArticleAdapter(data);
+        return new RecyclerViewArticleAdapter(activity,data);
     }
 
     @Override

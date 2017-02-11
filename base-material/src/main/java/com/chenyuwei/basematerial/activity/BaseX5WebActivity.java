@@ -37,4 +37,12 @@ public class BaseX5WebActivity extends BaseActivity {
             }
         });
     }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        if (webView != null){
+            webView.destroy();
+        }
+    }
 }

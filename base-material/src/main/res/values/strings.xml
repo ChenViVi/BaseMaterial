@@ -1,12 +1,21 @@
 <resources>
-    <string name="app_name">在这儿</string>
     <string name="drawer_open">Open</string>
     <string name="drawer_close">Close</string>
 
-    <string name="tvNotice">提示</string>
+    <string name="tvChoosePhoto">头像选择</string>
+    <string name="tvCamera">拍照</string>
+    <string name="tvAlbum">相册</string>
+    <string name="tvLoading">加载中，请稍等&#8230;</string>
+    <string name="tvChooseSex">选择性别</string>
+    <string name="tvSexMale">汉子</string>
+    <string name="tvSexFemale">女汉子</string>
+    <string name="tvConfirm">确认</string>
+    <string name="tvCancel">取消</string>
 
     <string name="btnConfirm">确认</string>
     <string name="btnCancel">取消</string>
+
+
 
     <string name="tsRequestFailed">网络连接失败</string>
 </resources>

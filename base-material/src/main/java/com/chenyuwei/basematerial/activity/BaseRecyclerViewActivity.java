@@ -2,14 +2,11 @@ package com.chenyuwei.basematerial.activity;
 
 import android.os.Bundle;
 import android.support.annotation.Nullable;
-import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 
 import com.chenyuwei.basematerial.R;
-import com.chenyuwei.basematerial.adapter.BaseListViewAdapter;
 import com.chenyuwei.basematerial.adapter.BaseRecyclerViewAdapter;
-import com.chenyuwei.xlistview.XListView;
 import com.superrecycleview.superlibrary.recycleview.SuperRecyclerView;
 
 import java.util.ArrayList;
@@ -44,6 +41,12 @@ public abstract class BaseRecyclerViewActivity<Item, Adapter extends BaseRecycle
         setPullRefreshEnable(false);
         recyclerView.setLoadingListener(this);
         clearItems();
+        adapter.setOnItemClickListener(new BaseRecyclerViewAdapter.OnItemClickListener<Item>() {
+            @Override
+            public void onItemClick(int position, Item item) {
+                BaseRecyclerViewActivity.this.onItemClick(position,item);
+            }
+        });
     }
 
     protected abstract RecyclerView.LayoutManager setLayoutManager();
@@ -55,6 +58,10 @@ public abstract class BaseRecyclerViewActivity<Item, Adapter extends BaseRecycle
 
     @Override
     public void onLoadMore() {
+
+    }
+
+    protected void onItemClick(int position, Item item){
 
     }
 
@@ -87,8 +94,4 @@ public abstract class BaseRecyclerViewActivity<Item, Adapter extends BaseRecycle
     }
 
     protected abstract Adapter setAdapter();
-
-    protected void setOnItemClickListener(BaseRecyclerViewAdapter.OnItemClickListener<Item> listener) {
-        adapter.setOnItemClickListener(listener);
-    }
 }

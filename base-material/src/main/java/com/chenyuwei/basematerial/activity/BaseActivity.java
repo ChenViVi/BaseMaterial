@@ -12,8 +12,6 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.Toast;
 
-import com.android.volley.RequestQueue;
-import com.android.volley.toolbox.Volley;
 import com.chenyuwei.basematerial.BaseApplication;
 
 /**
@@ -23,9 +21,8 @@ public abstract class BaseActivity extends AppCompatActivity implements View.OnC
 
     protected BaseActivity activity;
     protected View rootView;
-    protected RequestQueue appQueue;
-    protected RequestQueue queue;
     protected SharedPreferences preferences;
+    protected Toolbar toolbar;
 
     protected abstract int onBindView();
 
@@ -33,19 +30,35 @@ public abstract class BaseActivity extends AppCompatActivity implements View.OnC
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         activity = this;
+        ((BaseApplication)getApplication()).addActivity(activity);
         rootView = View.inflate(activity, onBindView(), null);
         setContentView(rootView);
-        appQueue = Volley.newRequestQueue(activity);
-        queue = ((BaseApplication) activity.getApplication()).getQueue();
         preferences = PreferenceManager.getDefaultSharedPreferences(activity);
     }
 
-    protected void setSupportActionBar(int id){
-        setSupportActionBar((Toolbar)(findViewById(id)));
+    protected void setSupportActionBar(int id) {
+        toolbar = (Toolbar) (findViewById(id));
+        setSupportActionBar(toolbar);
     }
 
-    protected void setDisplayHomeAsUpEnabled(boolean enabled){
-        if (getSupportActionBar() != null){
+    @Override
+    public void setTitle(CharSequence title) {
+        super.setTitle(title);
+        if (toolbar != null){
+            toolbar.setTitle(title);
+        }
+    }
+
+    @Override
+    public void setTitle(int title) {
+        super.setTitle(title);
+        if (toolbar != null){
+            toolbar.setTitle(title);
+        }
+    }
+
+    protected void setDisplayHomeAsUpEnabled(boolean enabled) {
+        if (getSupportActionBar() != null) {
             getSupportActionBar().setDisplayHomeAsUpEnabled(enabled);
         }
     }
@@ -56,6 +69,10 @@ public abstract class BaseActivity extends AppCompatActivity implements View.OnC
 
     protected void toast(int id) {
         Toast.makeText(activity, getResources().getString(id), Toast.LENGTH_SHORT).show();
+    }
+
+    protected void debug() {
+        Toast.makeText(activity, "debug", Toast.LENGTH_SHORT).show();
     }
 
     protected void startActivity(Class<?> cls) {
@@ -77,10 +94,19 @@ public abstract class BaseActivity extends AppCompatActivity implements View.OnC
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        if (item.getItemId() == android.R.id.home){
+        if (item.getItemId() == android.R.id.home) {
             finish();
-            return true ;
+            return true;
         }
         return super.onOptionsItemSelected(item);
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+    }
+
+    public void exitAllActivities(){
+        ((BaseApplication)getApplication()).exitAllActivities();
     }
 }

@@ -4,11 +4,12 @@ import android.support.v4.widget.DrawerLayout;
 import android.os.Bundle;
 
 import com.chenyuwei.basematerial.demo.R;
-import com.chenyuwei.basematerial.activity.BaseTabTopActivity;
+
 import com.chenyuwei.basematerial.demo.fragment.HomeFragment;
-import com.chenyuwei.basematerial.demo.fragment.ListViewFragment;
 import com.chenyuwei.basematerial.demo.fragment.RecyclerViewFragment;
+import com.chenyuwei.basematerial.activity.BaseTabTopActivity;
 import com.chenyuwei.basematerial.fragment.BaseDrawerFragment;
+
 
 public class DrawLayoutTabLayoutActivity extends BaseTabTopActivity {
 
@@ -28,6 +29,5 @@ public class DrawLayoutTabLayoutActivity extends BaseTabTopActivity {
         drawerFragment.setUp(R.id.fragment_navigation_drawer, (DrawerLayout) findViewById(R.id.drawer_layout), toolbar);
         addFragment(new HomeFragment(),"HomeFragment");
         addFragment(new RecyclerViewFragment(),"RecyclerViewFragment");
-        addFragment(new ListViewFragment(),"ListViewFragment");
     }
 }

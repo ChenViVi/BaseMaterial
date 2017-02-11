@@ -1,5 +1,6 @@
 package com.chenyuwei.basematerial.demo.adapter;
 
+import android.app.Activity;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -7,8 +8,8 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import com.chenyuwei.basematerial.demo.R;
-import com.chenyuwei.basematerial.adapter.BaseRecyclerViewAdapter;
 import com.chenyuwei.basematerial.demo.modle.Article;
+import com.chenyuwei.basematerial.adapter.BaseRecyclerViewAdapter;
 
 import java.util.List;
 
@@ -17,8 +18,9 @@ import java.util.List;
  */
 public class RecyclerViewArticleAdapter extends BaseRecyclerViewAdapter<Article,RecyclerViewArticleAdapter.ViewHolder> {
 
-    public RecyclerViewArticleAdapter(List<Article> data) {
-        super(data);
+
+    public RecyclerViewArticleAdapter(Activity activity, List<Article> data) {
+        super(activity, data);
     }
 
     @Override

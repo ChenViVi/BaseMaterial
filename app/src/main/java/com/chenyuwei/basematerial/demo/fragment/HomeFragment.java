@@ -6,11 +6,10 @@ import android.view.View;
 import com.chenyuwei.basematerial.demo.R;
 import com.chenyuwei.basematerial.demo.activity.DrawLayoutActivity;
 import com.chenyuwei.basematerial.demo.activity.DrawLayoutTabLayoutActivity;
-import com.chenyuwei.basematerial.demo.activity.ListViewActivity;
 import com.chenyuwei.basematerial.demo.activity.RecyclerViewActivity;
 import com.chenyuwei.basematerial.demo.activity.TabBottomActivity;
 import com.chenyuwei.basematerial.demo.activity.TabTopActivity;
-import com.chenyuwei.basematerial.demo.activity.X5X5WebActivity;
+import com.chenyuwei.basematerial.demo.activity.X5WebActivity;
 import com.chenyuwei.basematerial.fragment.BaseFragment;
 
 
@@ -30,9 +29,9 @@ public class HomeFragment extends BaseFragment {
         findViewById(R.id.btnTabLayoutActivity);
         findViewById(R.id.btnDrawLayoutActivity);
         findViewById(R.id.btnDrawLayoutTabLayoutActivity);
-        findViewById(R.id.btnListViewActivity);
         findViewById(R.id.btnRecycleViewActivity);
         findViewById(R.id.btnTabBottomActivity);
+        findViewById(R.id.btnX5WebActivity);
     }
 
     @Override
@@ -48,9 +47,6 @@ public class HomeFragment extends BaseFragment {
             case R.id.btnDrawLayoutTabLayoutActivity:
                 startActivity(DrawLayoutTabLayoutActivity.class);
                 break;
-            case R.id.btnListViewActivity:
-                startActivity(ListViewActivity.class);
-                break;
             case R.id.btnRecycleViewActivity:
                 startActivity(RecyclerViewActivity.class);
                 break;
@@ -58,7 +54,7 @@ public class HomeFragment extends BaseFragment {
                 startActivity(TabBottomActivity.class);
                 break;
             case R.id.btnX5WebActivity:
-                startActivity(X5X5WebActivity.class);
+                startActivity(X5WebActivity.class);
                 break;
         }
     }

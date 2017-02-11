@@ -4,16 +4,11 @@ import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentManager;
-import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.support.v7.widget.Toolbar;
 
 import com.chenyuwei.basematerial.R;
 import com.chenyuwei.basematerial.adapter.TabAdapter;
-
-import java.util.ArrayList;
-import java.util.List;
 
 /**
  * Created by vivi on 2016/9/3.
@@ -43,8 +38,17 @@ public class BaseTabTopActivity extends BaseActivity {
         tabLayout.setupWithViewPager(viewPager);
     }
 
+    protected void setCurrentItem(int position){
+        viewPager.setCurrentItem(position);
+    }
+
     protected void addFragment(Fragment fragment, String title){
         adapterTab.addFragment(fragment,title);
+        adapterTab.notifyDataSetChanged();
+    }
+
+    protected void addFragment(Fragment fragment, int title){
+        adapterTab.addFragment(fragment,getResources().getString(title));
         adapterTab.notifyDataSetChanged();
     }
 }

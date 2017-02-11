@@ -1,4 +1,4 @@
-package com.chenyuwei.basematerial.view;
+package com.chenyuwei.basematerial.view.dialog;
 
 import android.app.ProgressDialog;
 import android.content.Context;

@@ -1,4 +1,4 @@
-package com.chenyuwei.basematerial.view;
+package com.chenyuwei.basematerial.view.dialog;
 
 import android.app.AlertDialog;
 import android.content.Context;
@@ -15,6 +15,8 @@ import com.chenyuwei.basematerial.R;
 public abstract class ConfirmDialog extends AlertDialog implements View.OnClickListener{
 
     private String message;
+    private String confirm;
+    private String cancel;
     private TextView tvNotice;
     private Button btnConfirm;
     private Button btnCancel;
@@ -25,6 +27,16 @@ public abstract class ConfirmDialog extends AlertDialog implements View.OnClickL
         setCancelable(false);
     }
 
+    public ConfirmDialog(Context context,int message){
+        this(context,context.getResources().getString(message));
+    }
+
+    public ConfirmDialog(Context context,int message,int confirm,int cancel){
+        this(context,context.getResources().getString(message));
+        this.confirm = context.getResources().getString(confirm);
+        this.cancel = context.getResources().getString(cancel);
+    }
+
     public abstract void onConfirm();
 
     public abstract void onCancel();
@@ -32,11 +44,17 @@ public abstract class ConfirmDialog extends AlertDialog implements View.OnClickL
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        this.setContentView(R.layout.dialog_confirm);
+        setContentView(R.layout.dialog_confirm);
         btnConfirm = (Button) findViewById(R.id.btnConfirm);
         btnCancel = (Button) findViewById(R.id.btnCancel);
         tvNotice = (TextView) findViewById(R.id.tvNotice);
         tvNotice.setText(message);
+        if (confirm !=  null){
+            btnConfirm.setText(confirm);
+        }
+        if (cancel != null){
+            btnCancel.setText(cancel);
+        }
         btnConfirm.setOnClickListener(this);
         btnCancel.setOnClickListener(this);
     }
@@ -45,6 +63,7 @@ public abstract class ConfirmDialog extends AlertDialog implements View.OnClickL
     public void onClick(View view) {
         int i = view.getId();
         if (i == R.id.btnCancel) {
+            onCancel();
             dismiss();
         } else if (i == R.id.btnConfirm) {
             onConfirm();

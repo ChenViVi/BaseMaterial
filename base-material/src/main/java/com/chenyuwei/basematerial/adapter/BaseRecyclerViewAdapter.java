@@ -1,10 +1,12 @@
 package com.chenyuwei.basematerial.adapter;
 
 import android.app.Activity;
-import android.content.Context;
+import android.content.SharedPreferences;
+import android.preference.PreferenceManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Toast;
 
 import java.util.List;
 
@@ -13,13 +15,15 @@ import java.util.List;
  */
 public abstract class BaseRecyclerViewAdapter<Item, Holder extends RecyclerView.ViewHolder> extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
 
-    protected Context context;
-    private List<Item> items;
+    protected Activity activity;
+    protected SharedPreferences preferences;
+    protected List<Item> items;
     private OnItemClickListener onItemClickListener;
 
-    public BaseRecyclerViewAdapter(List<Item> items){
+    public BaseRecyclerViewAdapter(Activity activity,List<Item> items){
         this.items = items;
-
+        this.activity = activity;
+        preferences = PreferenceManager.getDefaultSharedPreferences(activity);
     }
 
     public void setOnItemClickListener(OnItemClickListener<Item> listener) {
@@ -28,7 +32,6 @@ public abstract class BaseRecyclerViewAdapter<Item, Holder extends RecyclerView.
 
     @Override
     public RecyclerView.ViewHolder onCreateViewHolder(ViewGroup parent, final int viewType) {
-        context = parent.getContext();
         return onCreateItem(parent, viewType);
     }
 
@@ -56,6 +59,7 @@ public abstract class BaseRecyclerViewAdapter<Item, Holder extends RecyclerView.
     public abstract void onBindViewHolder(Holder viewHolder, int position, Item item);
 
     public class ViewHolder extends RecyclerView.ViewHolder {
+
         public ViewHolder(View itemView) {
             super(itemView);
         }
@@ -66,5 +70,13 @@ public abstract class BaseRecyclerViewAdapter<Item, Holder extends RecyclerView.
 
     public interface OnItemClickListener<Item> {
         void onItemClick(int position, Item item);
+    }
+
+    protected void toast(String message) {
+        Toast.makeText(activity, message, Toast.LENGTH_SHORT).show();
+    }
+
+    protected void toast(int id) {
+        Toast.makeText(activity, activity.getResources().getString(id), Toast.LENGTH_SHORT).show();
     }
 }

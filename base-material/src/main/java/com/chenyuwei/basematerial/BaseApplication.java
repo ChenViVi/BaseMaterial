@@ -1,25 +1,37 @@
 package com.chenyuwei.basematerial;
 
+import android.app.Activity;
 import android.app.Application;
 
-import com.android.volley.RequestQueue;
-import com.android.volley.toolbox.Volley;
+import java.util.LinkedList;
+import java.util.List;
 
 /**
- * Created by vivi on 2016/8/31.
+ * Created by vivi on 2016/11/3.
  */
 
-public class BaseApplication extends Application {
+public class BaseApplication extends Application{
 
-    protected RequestQueue queue;
+    private List<Activity> activities = new LinkedList<Activity>();
 
-    @Override
-    public void onCreate() {
-        super.onCreate();
-        queue = Volley.newRequestQueue(this);
+    public void addActivity(Activity activity) {
+        activities.add(activity);
     }
 
-    public RequestQueue getQueue() {
-        return queue;
+    public void removeActivity(Activity activity){
+        //activities.remove();
+    }
+
+    public void exitAllActivities(){
+        for (Activity activity:activities) {
+            if (activity != null)
+                activity.finish();
+        }
+    }
+
+    @Override
+    public void onLowMemory() {
+        super.onLowMemory();
+        System.gc();
     }
 }

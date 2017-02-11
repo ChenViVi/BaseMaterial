@@ -12,8 +12,9 @@
             android:id="@+id/tvTitle"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textColor="@color/textWhite"
-            android:textSize="@dimen/tvToolBar" />
+            android:textColor="@color/tvWhite"
+            android:textSize="@dimen/tvToolBar"
+            android:layout_gravity="center"/>
     </android.support.v7.widget.Toolbar>
     <com.superrecycleview.superlibrary.recycleview.SuperRecyclerView
         android:id="@+id/recyclerView"

@@ -5,56 +5,38 @@
     android:orientation="vertical"
     android:gravity="center_horizontal"
     android:background="@android:color/white">
-    <LinearLayout
-        android:layout_width="match_parent"
+    <TextView
+        android:id="@+id/tvNotice"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:orientation="vertical"
-        android:gravity="center_horizontal">
-        <TextView
+        android:textSize="16sp"
+        android:paddingLeft="14dp"
+        android:paddingRight="14dp"
+        android:layout_marginTop="20dp"
+        android:layout_marginBottom="10dp"
+        android:textColor="@color/tvBlack"/>
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_gravity="end">
+        <Button
+            android:id="@+id/btnCancel"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/tvNotice"
-            android:textSize="20sp"
-            android:padding="10dp"/>
-        <ImageView
-            android:layout_width="match_parent"
-            android:layout_height="1dp"
-            android:background="@android:color/darker_gray"/>
-        <TextView
-            android:id="@+id/tvNotice"
-            android:layout_width="match_parent"
+            android:background="@android:color/white"
+            android:text="@string/btnCancel"
+            android:textColor="@color/colorPrimary"
+            style="?android:attr/buttonBarButtonStyle"
+            android:paddingEnd="10dp"
+            android:paddingRight="10dp" />
+        <Button
+            android:id="@+id/btnConfirm"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textSize="18sp"
-            android:paddingLeft="10dp"
-            android:paddingRight="10dp"
-            android:layout_marginTop="20dp"/>
-        <ImageView
-            android:layout_width="match_parent"
-            android:layout_height="1dp"
-            android:background="@android:color/darker_gray"
-            android:layout_marginTop="20dp"/>
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal">
-            <Button
-                android:id="@+id/btnCancel"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:background="@android:color/white"
-                android:text="@string/btnCancel"
-                android:textColor="@color/colorPrimary"
-                android:textSize="20sp" />
-            <Button
-                android:id="@+id/btnConfirm"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:background="@color/colorPrimary"
-                android:text="@string/btnConfirm"
-                android:textColor="@color/textWhite"
-                android:textSize="20sp" />
-        </LinearLayout>
+            android:text="@string/btnConfirm"
+            android:background="@android:color/white"
+            android:textColor="@color/colorPrimary"
+            style="?android:attr/buttonBarButtonStyle"/>
     </LinearLayout>
 </LinearLayout>

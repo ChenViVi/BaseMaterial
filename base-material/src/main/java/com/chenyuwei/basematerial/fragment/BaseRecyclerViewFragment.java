@@ -1,16 +1,12 @@
 package com.chenyuwei.basematerial.fragment;
 
 import android.os.Bundle;
-import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
-import android.view.LayoutInflater;
 import android.view.View;
-import android.view.ViewGroup;
 import android.widget.TextView;
 
 import com.chenyuwei.basematerial.R;
-import com.chenyuwei.basematerial.adapter.BaseListViewAdapter;
 import com.chenyuwei.basematerial.adapter.BaseRecyclerViewAdapter;
 import com.superrecycleview.superlibrary.recycleview.SuperRecyclerView;
 
@@ -52,6 +48,12 @@ public abstract class BaseRecyclerViewFragment<Item,Adapter extends BaseRecycler
         setPullRefreshEnable(false);
         recyclerView.setLoadingListener(this);
         clearItems();
+        adapter.setOnItemClickListener(new BaseRecyclerViewAdapter.OnItemClickListener<Item>() {
+            @Override
+            public void onItemClick(int position, Item item) {
+                BaseRecyclerViewFragment.this.onItemClick(position,item);
+            }
+        });
     }
 
     protected abstract RecyclerView.LayoutManager setLayoutManager();
@@ -114,7 +116,7 @@ public abstract class BaseRecyclerViewFragment<Item,Adapter extends BaseRecycler
 
     protected abstract Adapter setAdapter();
 
-    protected void setOnItemClickListener(BaseRecyclerViewAdapter.OnItemClickListener<Item> listener){
-        adapter.setOnItemClickListener(listener);
+    protected void onItemClick(int position, Item item){
+
     }
 }
