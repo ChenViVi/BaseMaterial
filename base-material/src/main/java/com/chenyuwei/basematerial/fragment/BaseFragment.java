@@ -38,8 +38,8 @@ public abstract class BaseFragment extends Fragment implements View.OnClickListe
 
     protected void onCreateView(){}
 
-    protected View findViewById(int id){
-        View view = rootView.findViewById(id);
+    protected  <T extends View> T  findViewById(int id){
+        T view = rootView.findViewById(id);
         if (!(rootView.findViewById(id) instanceof AdapterView)){
             view.setOnClickListener(this);
         }
