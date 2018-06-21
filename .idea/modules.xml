@@ -5,6 +5,7 @@
       <module fileurl="file://$PROJECT_DIR$/BaseMaterial.iml" filepath="$PROJECT_DIR$/BaseMaterial.iml" />
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
       <module fileurl="file://$PROJECT_DIR$/base-material/base-material.iml" filepath="$PROJECT_DIR$/base-material/base-material.iml" />
+      <module fileurl="file://$PROJECT_DIR$/refresh-layout/refresh-layout.iml" filepath="$PROJECT_DIR$/refresh-layout/refresh-layout.iml" />
       <module fileurl="file://$PROJECT_DIR$/super-recycler-view/super-recycler-view.iml" filepath="$PROJECT_DIR$/super-recycler-view/super-recycler-view.iml" />
     </modules>
   </component>

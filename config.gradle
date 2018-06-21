@@ -1,24 +1,21 @@
 ext{
     supportVer = '28.0.0-alpha3'
+    minSdkVersion = 15
+    targetSdkVersion = 28
+    compileSdkVersion = 28
 
     appConfigs = [
-            minSdkVersion: 15,
-            targetSdkVersion: 28,
-            compileSdkVersion: 28,
             versionCode: 1,
             versionName: "1.0",
     ]
 
     baseConfigs = [
-            minSdkVersion: 15,
-            targetSdkVersion: 28,
-            compileSdkVersion: 28,
             versionCode: 1,
             versionName: "1.1.6",
     ]
 
-    signxingConfigs = [keyAlias: "zaizhe",
-                      keyPassword: "zaizhe0584",
-                      storeFile    : "E:\\1_Develop\\1_SVN\\MoreOverAndroid\\04_OutPut\\zaizhe.jks",
-                      storePassword    : "zaizhe0584"]
+    refreshLayoutConfigs = [
+            versionCode: 1,
+            versionName: "1.1.6",
+    ]
 }

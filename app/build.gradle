@@ -1,12 +1,12 @@
 apply plugin: 'com.android.application'
 
 android {
-    compileSdkVersion rootProject.ext.appConfigs["targetSdkVersion"]
+    compileSdkVersion rootProject.ext.targetSdkVersion
 
     defaultConfig {
         applicationId "com.chenyuwei.basematerial.demo"
-        minSdkVersion rootProject.ext.appConfigs["minSdkVersion"]
-        targetSdkVersion rootProject.ext.appConfigs["targetSdkVersion"]
+        minSdkVersion rootProject.ext.minSdkVersion
+        targetSdkVersion rootProject.ext.targetSdkVersion
         versionCode rootProject.ext.appConfigs["versionCode"]
         versionName rootProject.ext.appConfigs["versionName"]
         vectorDrawables.useSupportLibrary = true

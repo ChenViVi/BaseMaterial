@@ -1,11 +1,11 @@
 apply plugin: 'com.android.library'
 
 android {
-    compileSdkVersion rootProject.ext.appConfigs["targetSdkVersion"]
+    compileSdkVersion rootProject.ext.targetSdkVersion
 
     defaultConfig {
-        minSdkVersion rootProject.ext.appConfigs["minSdkVersion"]
-        targetSdkVersion rootProject.ext.appConfigs["targetSdkVersion"]
+        minSdkVersion rootProject.ext.minSdkVersion
+        targetSdkVersion rootProject.ext.targetSdkVersion
         versionCode rootProject.ext.appConfigs["versionCode"]
         versionName rootProject.ext.appConfigs["versionName"]
     }
