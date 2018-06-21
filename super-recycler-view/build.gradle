@@ -1,14 +1,13 @@
 apply plugin: 'com.android.library'
 
 android {
-    compileSdkVersion 25
-    buildToolsVersion "25.0.2"
+    compileSdkVersion rootProject.ext.appConfigs["targetSdkVersion"]
 
     defaultConfig {
-        minSdkVersion 15
-        targetSdkVersion 25
-        versionCode 1
-        versionName "1.0"
+        minSdkVersion rootProject.ext.appConfigs["minSdkVersion"]
+        targetSdkVersion rootProject.ext.appConfigs["targetSdkVersion"]
+        versionCode rootProject.ext.appConfigs["versionCode"]
+        versionName rootProject.ext.appConfigs["versionName"]
     }
     buildTypes {
         release {
@@ -19,8 +18,6 @@ android {
 }
 
 dependencies {
-    compile fileTree(dir: 'libs', include: ['*.jar'])
-    testCompile 'junit:junit:4.12'
-    compile 'com.android.support:appcompat-v7:25.1.0'
-    compile 'com.android.support:design:25.1.0'
+    implementation fileTree(dir: 'libs', include: ['*.jar'])
+    implementation 'com.android.support:appcompat-v7:' + rootProject.ext.supportVer
 }
