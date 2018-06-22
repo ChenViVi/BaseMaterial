@@ -9,7 +9,6 @@ import com.chenyuwei.basematerial.demo.activity.DrawLayoutTabLayoutActivity;
 import com.chenyuwei.basematerial.demo.activity.RecyclerViewActivity;
 import com.chenyuwei.basematerial.demo.activity.TabBottomActivity;
 import com.chenyuwei.basematerial.demo.activity.TabTopActivity;
-import com.chenyuwei.basematerial.demo.activity.X5WebActivity;
 import com.chenyuwei.basematerial.fragment.BaseFragment;
 
 
@@ -31,7 +30,6 @@ public class HomeFragment extends BaseFragment {
         findViewById(R.id.btnDrawLayoutTabLayoutActivity);
         findViewById(R.id.btnRecycleViewActivity);
         findViewById(R.id.btnTabBottomActivity);
-        findViewById(R.id.btnX5WebActivity);
     }
 
     @Override
@@ -52,9 +50,6 @@ public class HomeFragment extends BaseFragment {
                 break;
             case R.id.btnTabBottomActivity:
                 startActivity(TabBottomActivity.class);
-                break;
-            case R.id.btnX5WebActivity:
-                startActivity(X5WebActivity.class);
                 break;
         }
     }

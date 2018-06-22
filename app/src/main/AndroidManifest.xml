@@ -29,6 +29,5 @@
         <activity android:name=".activity.DrawLayoutActivity" />
         <activity android:name=".activity.DrawLayoutTabLayoutActivity"/>
         <activity android:name=".activity.RecyclerViewActivity"/>
-        <activity android:name=".activity.X5WebActivity"/>
     </application>
 </manifest>
