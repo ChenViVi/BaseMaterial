@@ -104,6 +104,7 @@ public abstract class BaseActivity extends AppCompatActivity implements View.OnC
     @Override
     protected void onDestroy() {
         super.onDestroy();
+        ((BaseApplication)getApplication()).removeActivity(activity);
     }
 
     public void exitAllActivities(){

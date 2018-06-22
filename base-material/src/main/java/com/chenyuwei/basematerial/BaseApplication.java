@@ -19,7 +19,7 @@ public class BaseApplication extends Application{
     }
 
     public void removeActivity(Activity activity){
-        //activities.remove();
+        activities.remove(activity);
     }
 
     public void exitAllActivities(){

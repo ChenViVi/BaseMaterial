@@ -6,6 +6,7 @@ import android.support.v7.widget.RecyclerView;
 import com.chenyuwei.basematerial.demo.adapter.RecyclerViewArticleAdapter;
 import com.chenyuwei.basematerial.demo.modle.Article;
 import com.chenyuwei.basematerial.fragment.BaseRecyclerViewFragment;
+import com.scwang.smartrefresh.layout.api.RefreshLayout;
 
 
 import java.util.ArrayList;
@@ -39,16 +40,16 @@ public class RecyclerViewFragment extends BaseRecyclerViewFragment<Article,Recyc
     }
 
     @Override
-    public void onRefresh() {
-        super.onRefresh();
+    public void onRefresh(RefreshLayout refreshlayout) {
+        super.onRefresh(refreshlayout);
         clearItems();
         addItems(items);
         stopRefresh();
     }
 
     @Override
-    public void onLoadMore() {
-        super.onLoadMore();
+    public void onLoadMore(RefreshLayout refreshlayout) {
+        super.onLoadMore(refreshlayout);
         addItems(items);
         stopLoadMore();
     }

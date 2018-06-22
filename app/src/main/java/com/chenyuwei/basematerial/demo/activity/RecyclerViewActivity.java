@@ -1,6 +1,7 @@
 package com.chenyuwei.basematerial.demo.activity;
 
 import android.os.Bundle;
+import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -8,6 +9,7 @@ import android.support.v7.widget.RecyclerView;
 import com.chenyuwei.basematerial.demo.adapter.RecyclerViewArticleAdapter;
 import com.chenyuwei.basematerial.demo.modle.Article;
 import com.chenyuwei.basematerial.activity.BaseRecyclerViewActivity;
+import com.scwang.smartrefresh.layout.api.RefreshLayout;
 
 import java.util.ArrayList;
 
@@ -39,17 +41,16 @@ public class RecyclerViewActivity extends BaseRecyclerViewActivity<Article,Recyc
         return new RecyclerViewArticleAdapter(activity,data);
     }
 
+
     @Override
-    public void onRefresh() {
-        super.onRefresh();
+    public void onRefresh(@NonNull RefreshLayout refreshlayout) {
         clearItems();
         addItems(items);
         stopRefresh();
     }
 
     @Override
-    public void onLoadMore() {
-        super.onLoadMore();
+    public void onLoadMore(@NonNull RefreshLayout refreshLayout) {
         addItems(items);
         stopLoadMore();
     }
