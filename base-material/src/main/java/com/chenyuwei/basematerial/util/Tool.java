@@ -137,7 +137,7 @@ public class Tool {
         return (info != null && info.isConnected());
     }
     
-    private static Bitmap resize(Bitmap bitmap, float scale) {
+    public static Bitmap resize(Bitmap bitmap, float scale) {
         Matrix matrix = new Matrix();
         matrix.postScale(scale,scale);
         return Bitmap.createBitmap(bitmap,0,0,bitmap.getWidth(),bitmap.getHeight(),matrix,true);
